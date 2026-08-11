@@ -7,7 +7,7 @@ import { getSupabaseClient } from "@/lib/supabase-client"
 import { cn } from "@/lib/utils"
 
 const categories = ["All", "Nutrition", "Toxin", "Mental", "Physical", "Genetic", "Medical"]
-const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "http://127.0.0.1:8000").replace(/\/$/, "")
+const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
 
 type HealthTask = {
   id: string

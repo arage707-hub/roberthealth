@@ -14,7 +14,7 @@ import { AiChat } from "@/components/dashboard/ai-chat"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import type { AchievementSummary } from "@/lib/achievement-types"
 
-const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "http://127.0.0.1:8000").replace(/\/$/, "")
+const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
 
 export function DashboardPage() {
   const router = useRouter()

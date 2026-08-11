@@ -9,7 +9,7 @@ import { getSupabaseClient } from "@/lib/supabase-client"
 import type { AchievementSummary } from "@/lib/achievement-types"
 import { AchievementBadge } from "@/components/dashboard/achievement-badge"
 
-const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "http://127.0.0.1:8000").replace(/\/$/, "")
+const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
 
 export function TopBar({ achievements, onAchievementsChange }: { achievements: AchievementSummary | null; onAchievementsChange: (summary: AchievementSummary) => void }) {
   const { resolvedTheme, setTheme } = useTheme()
