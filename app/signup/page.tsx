@@ -1,0 +1,16 @@
+import type { Metadata } from "next"
+import { AuthShell } from "@/components/auth/auth-shell"
+import { SignupForm } from "@/components/auth/signup-form"
+
+export const metadata: Metadata = {
+  title: "Create account — healthiphy.ai",
+  description: "Set up your admin profile to start your journey with healthiphy.ai.",
+}
+
+export default function SignupPage() {
+  return (
+    <AuthShell>
+      <SignupForm />
+    </AuthShell>
+  )
+}
