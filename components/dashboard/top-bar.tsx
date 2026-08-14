@@ -16,11 +16,24 @@ export function TopBar({ achievements, onAchievementsChange }: { achievements: A
   const [mounted, setMounted] = useState(false)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
+  const [accountName, setAccountName] = useState("")
 
   useEffect(() => setMounted(true), [])
 
+  useEffect(() => {
+    let active = true
+
+    void getSupabaseClient().auth.getUser().then(({ data }) => {
+      const metadata = data.user?.user_metadata as { first_name?: string; last_name?: string; full_name?: string; name?: string } | undefined
+      const name = [metadata?.first_name, metadata?.last_name].filter(Boolean).join(" ") || metadata?.full_name || metadata?.name || ""
+      if (active) setAccountName(name)
+    })
+
+    return () => { active = false }
+  }, [])
+
   const dark = mounted && resolvedTheme === "dark"
-  const fullName = [achievements?.profile.first_name, achievements?.profile.last_name].filter(Boolean).join(" ") || "Health Member"
+  const fullName = [achievements?.profile.first_name, achievements?.profile.last_name].filter(Boolean).join(" ") || accountName || "Health Member"
 
   async function openNotifications() {
     setNotificationsOpen((open) => !open)

@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import {
   LayoutGrid,
-  Bot,
+  Sparkles,
   Users,
   FileText,
   CalendarDays,
@@ -19,7 +19,7 @@ import { useCurrentUserRole } from "@/lib/use-current-user-role"
 
 const nav = [
   { icon: LayoutGrid, label: "Dashboard" },
-  { icon: Bot, label: "AI Chat" },
+  { icon: Sparkles, label: "AI Chat" },
   { icon: Users, label: "Patients" },
   { icon: FileText, label: "Records" },
   { icon: CalendarDays, label: "Schedule" },
@@ -76,7 +76,7 @@ export function Sidebar({ active: controlledActive, onNavigate, contained = fals
                 "flex size-11 items-center justify-center rounded-2xl transition-colors",
                 isActive
                   ? "bg-sidebar-accent text-sidebar-foreground"
-                  : "text-sidebar-foreground/45 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
+                  : "text-sidebar-foreground/85 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
               )}
             >
               <Icon className="size-5" />
@@ -88,7 +88,7 @@ export function Sidebar({ active: controlledActive, onNavigate, contained = fals
             href="/admin/knowledge"
             title="Knowledge Base"
             aria-label="Knowledge Base"
-            className="flex size-11 items-center justify-center rounded-2xl text-sidebar-foreground/45 transition-colors hover:bg-sidebar-accent/60 hover:text-sidebar-foreground"
+            className="flex size-11 items-center justify-center rounded-2xl text-sidebar-foreground/85 transition-colors hover:bg-sidebar-accent/60 hover:text-sidebar-foreground"
           >
             <Database className="size-5" />
           </Link>
@@ -98,7 +98,7 @@ export function Sidebar({ active: controlledActive, onNavigate, contained = fals
       <div className="flex flex-col items-center gap-3">
         {footer.map(({ icon: Icon, label, href }) => {
           const className =
-            "flex size-11 items-center justify-center rounded-2xl text-sidebar-foreground/45 transition-colors hover:bg-sidebar-accent/60 hover:text-sidebar-foreground"
+            "flex size-11 items-center justify-center rounded-2xl text-sidebar-foreground/85 transition-colors hover:bg-sidebar-accent/60 hover:text-sidebar-foreground"
 
           if (href) {
             return (

@@ -1,7 +1,7 @@
 "use client"
 
 import { FormEvent, useEffect, useRef, useState } from "react"
-import { Bot, LoaderCircle, Plus, Send, Sparkles, User } from "lucide-react"
+import { LoaderCircle, Paperclip, Plus, Send, Sparkles, User, X } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { getSupabaseClient } from "@/lib/supabase-client"
@@ -10,6 +10,7 @@ type Message = {
   id: number | string
   role: "assistant" | "user"
   text: string
+  attachments?: string[]
 }
 
 const starterMessages: Message[] = [
@@ -32,8 +33,10 @@ export function AiChat() {
   const [input, setInput] = useState("")
   const [sending, setSending] = useState(false)
   const [error, setError] = useState("")
+  const [attachments, setAttachments] = useState<File[]>([])
   const chatRef = useRef<HTMLElement>(null)
   const messagesRef = useRef<HTMLDivElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const [composerPosition, setComposerPosition] = useState<{ left: number; width: number } | null>(null)
 
   useEffect(() => {
@@ -117,33 +120,40 @@ export function AiChat() {
     return () => window.cancelAnimationFrame(frame)
   }, [messages, sending, error])
 
-  async function sendMessage(text: string) {
+  async function sendMessage(text: string, files = attachments) {
     const value = text.trim()
-    if (!value || sending || historyLoading) return
+    if ((!value && files.length === 0) || sending || historyLoading) return
 
     const userMessageId = Date.now()
-    setMessages((current) => [...current, { id: userMessageId, role: "user", text: value }])
+    setMessages((current) => [...current, {
+      id: userMessageId,
+      role: "user",
+      text: value || "Please analyze the attached file(s).",
+      attachments: files.map((file) => file.name),
+    }])
     setInput("")
+    setAttachments([])
     setError("")
     setSending(true)
 
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_LARAVEL_API_URL?.replace(/\/$/, "")
-      if (!apiBaseUrl) throw new Error("The chat API URL is not configured.")
+      const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
 
       const supabase = getSupabaseClient()
       const { data, error: sessionError } = await supabase.auth.getSession()
       if (sessionError) throw sessionError
       if (!data.session?.access_token) throw new Error("Your session has expired. Please sign in again.")
 
+      const formData = new FormData()
+      formData.append("message", value)
+      files.forEach((file) => formData.append("attachments[]", file))
       const response = await fetch(`${apiBaseUrl}/api/chat`, {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json",
           Authorization: `Bearer ${data.session.access_token}`,
         },
-        body: JSON.stringify({ message: value }),
+        body: formData,
       })
       const payload = (await response.json()) as { response?: string; message?: string }
       if (!response.ok || !payload.response) {
@@ -166,12 +176,26 @@ export function AiChat() {
     void sendMessage(input)
   }
 
+  function selectAttachments(files: FileList | null) {
+    if (!files) return
+    const allowed = new Set(["application/pdf", "text/plain", "text/markdown", "text/csv", "image/jpeg", "image/png", "image/webp"])
+    const selected = Array.from(files)
+    const invalid = selected.find((file) => !allowed.has(file.type) || file.size > 10 * 1024 * 1024)
+    if (invalid) {
+      setError("Only PDF, TXT, Markdown, CSV, JPG, PNG, and WebP files up to 10 MB are allowed. Code and executable files are blocked.")
+      return
+    }
+    setAttachments((current) => [...current, ...selected].slice(0, 3))
+    setError("")
+    if (fileInputRef.current) fileInputRef.current.value = ""
+  }
+
   return (
     <section ref={chatRef} className="flex h-full min-h-0 flex-1 flex-col overflow-hidden rounded-[1.75rem] border border-border bg-card pb-28 shadow-sm">
       <header className="shrink-0 flex items-center justify-between border-b border-border px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <Bot className="size-5" />
+            <Sparkles className="size-5" />
           </div>
           <div>
             <h1 className="font-semibold text-foreground">Health AI Assistant</h1>
@@ -256,7 +280,7 @@ export function AiChat() {
                     {message.text}
                   </ReactMarkdown>
                 ) : (
-                  <span className="whitespace-pre-wrap">{message.text}</span>
+                  <div><span className="whitespace-pre-wrap">{message.text}</span>{message.attachments?.length ? <div className="mt-2 flex flex-wrap gap-1.5">{message.attachments.map((name) => <span key={name} className="rounded-full bg-primary-foreground/15 px-2 py-0.5 text-xs">📎 {name}</span>)}</div> : null}</div>
                 )}
               </div>
             </div>
@@ -291,6 +315,8 @@ export function AiChat() {
         style={composerPosition ? { left: composerPosition.left, width: composerPosition.width } : { visibility: "hidden" }}
       >
         <form onSubmit={handleSubmit} className="mx-auto flex max-w-3xl items-end gap-2 rounded-2xl border border-border bg-background p-2 shadow-sm focus-within:ring-2 focus-within:ring-ring/30">
+          <input ref={fileInputRef} type="file" multiple accept=".pdf,.txt,.md,.csv,image/jpeg,image/png,image/webp" className="hidden" onChange={(event) => selectAttachments(event.target.files)} />
+          <button type="button" onClick={() => fileInputRef.current?.click()} disabled={sending || historyLoading || attachments.length >= 3} aria-label="Attach document or image" title="Attach PDF, text file, CSV, or image" className="flex size-10 shrink-0 items-center justify-center rounded-xl text-muted-foreground hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-40"><Paperclip className="size-4" /></button>
           <textarea
             value={input}
             disabled={historyLoading}
@@ -308,14 +334,15 @@ export function AiChat() {
           />
           <button
             type="submit"
-            disabled={!input.trim() || sending || historyLoading}
+            disabled={(!input.trim() && attachments.length === 0) || sending || historyLoading}
             aria-label="Send message"
             className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
           >
             {sending ? <LoaderCircle className="size-4 animate-spin" /> : <Send className="size-4" />}
           </button>
         </form>
-        <p className="mt-2 text-center text-[11px] text-muted-foreground">AI can make mistakes. Verify important health information.</p>
+        {attachments.length ? <div className="mx-auto mt-2 flex max-w-3xl flex-wrap gap-2">{attachments.map((file) => <span key={`${file.name}-${file.lastModified}`} className="inline-flex items-center gap-1 rounded-full bg-secondary px-2.5 py-1 text-xs text-foreground">📎 {file.name}<button type="button" onClick={() => setAttachments((current) => current.filter((item) => item !== file))} aria-label={`Remove ${file.name}`} className="rounded-full text-muted-foreground hover:text-foreground"><X className="size-3" /></button></span>)}</div> : null}
+        <p className="mt-2 text-center text-[11px] text-muted-foreground">PDF, text, CSV, and images only (max 3 files, 10 MB each). AI can make mistakes—verify important health information.</p>
       </div>
     </section>
   )

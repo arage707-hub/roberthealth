@@ -3,12 +3,12 @@
 import { FormEvent, useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { CheckCircle2, Database, FileUp, LayoutDashboard, LoaderCircle, LogOut, Trash2 } from "lucide-react"
+import { CheckCircle2, Database, FileUp, LayoutDashboard, LoaderCircle, LogOut, Trash2, Users } from "lucide-react"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import { UserAvatar } from "@/components/dashboard/user-avatar"
 
 const categories = ["Nutrition", "Toxin", "Mental", "Physical", "Genetic", "Medical"] as const
-const apiBaseUrl = process.env.NEXT_PUBLIC_LARAVEL_API_URL?.replace(/\/$/, "")
+const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
 
 type SourceDocument = {
   id: string
@@ -17,6 +17,7 @@ type SourceDocument = {
   category: string[] | null
   status: "queued" | "processing" | "complete" | "failed"
   created_at: string
+  uploaded_by_name?: string
 }
 
 function responseError(payload: unknown, fallback: string) {
@@ -28,7 +29,6 @@ function responseError(payload: unknown, fallback: string) {
 }
 
 async function authorizedRequest(path: string, init?: RequestInit) {
-  if (!apiBaseUrl) throw new Error("NEXT_PUBLIC_LARAVEL_API_URL is not configured.")
   const supabase = getSupabaseClient()
   const { data, error } = await supabase.auth.getSession()
   if (error) throw error
@@ -36,6 +36,7 @@ async function authorizedRequest(path: string, init?: RequestInit) {
 
   const response = await fetch(`${apiBaseUrl}${path}`, {
     ...init,
+    cache: "no-store",
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${data.session.access_token}`,
@@ -166,6 +167,9 @@ export function KnowledgePage() {
             <span className="inline-flex items-center gap-2 rounded-full bg-card px-4 py-2 text-sm font-semibold text-primary shadow-sm">
               <Database className="size-4" /> Knowledge Base
             </span>
+            <Link href="/admin/users" className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-card hover:text-foreground">
+              <Users className="size-4" /> Users
+            </Link>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -208,7 +212,7 @@ export function KnowledgePage() {
         </section>
 
         <section className="mt-6 overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
-          <div className="border-b border-border px-6 py-5"><h2 className="text-lg font-semibold text-card-foreground">Upload history</h2></div>
+          <div className="border-b border-border px-6 py-5"><h2 className="text-lg font-semibold text-card-foreground">Shared upload history</h2><p className="mt-1 text-sm text-muted-foreground">Documents uploaded by every administrator are shown here.</p></div>
           {loadingDocuments ? <div className="flex items-center justify-center py-12 text-sm text-muted-foreground"><LoaderCircle className="mr-2 size-4 animate-spin" />Loading uploads...</div> : documents.length === 0 ? <p className="px-6 py-12 text-center text-sm text-muted-foreground">No source documents have been uploaded yet.</p> : (
             <div className="overflow-x-auto"><table className="w-full min-w-[760px] text-left text-sm"><thead className="bg-secondary/50 text-xs uppercase tracking-wide text-muted-foreground"><tr><th className="px-6 py-3">Document</th><th className="px-4 py-3">Type</th><th className="px-4 py-3">Category</th><th className="px-4 py-3">Status</th><th className="px-6 py-3">Created</th></tr></thead><tbody className="divide-y divide-border">{documents.map((document) => <tr key={document.id}><td className="px-6 py-4"><div className="flex min-w-48 items-center justify-between gap-3"><span className="font-medium text-card-foreground">{document.title}</span><button type="button" onClick={() => deleteDocument(document)} disabled={deletingId !== null} title={`Delete ${document.title}`} className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-destructive/10 px-3 py-2 text-xs font-semibold text-destructive hover:bg-destructive/20 disabled:opacity-50">{deletingId === document.id ? <LoaderCircle className="size-4 animate-spin" /> : <Trash2 className="size-4" />}Delete</button></div></td><td className="px-4 py-4 capitalize text-muted-foreground">{document.source_type}</td><td className="px-4 py-4 text-muted-foreground">{document.category?.join(", ") || "—"}</td><td className="px-4 py-4"><span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold capitalize text-primary">{document.status}</span></td><td className="px-6 py-4 text-muted-foreground">{new Date(document.created_at).toLocaleString()}</td></tr>)}</tbody></table></div>
           )}

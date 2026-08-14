@@ -8,6 +8,7 @@ import { SocialButtons } from "./social-buttons"
 
 const fieldClass =
   "w-full rounded-full border border-transparent bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:bg-card focus:outline-none focus:ring-2 focus:ring-ring/30 transition-colors"
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://roberthealth.vercel.app").replace(/\/$/, "")
 
 export function SignupForm() {
   const router = useRouter()
@@ -28,6 +29,7 @@ export function SignupForm() {
         email,
         password,
         options: {
+          emailRedirectTo: `${siteUrl}/verify`,
           data: {
             first_name: firstName,
             last_name: lastName,
