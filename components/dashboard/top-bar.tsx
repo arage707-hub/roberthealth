@@ -34,6 +34,7 @@ export function TopBar({ achievements, onAchievementsChange }: { achievements: A
 
   const dark = mounted && resolvedTheme === "dark"
   const fullName = [achievements?.profile.first_name, achievements?.profile.last_name].filter(Boolean).join(" ") || accountName || "Health Member"
+  const firstName = achievements?.profile.first_name || accountName.split(" ")[0] || "there"
 
   async function openNotifications() {
     setNotificationsOpen((open) => !open)
@@ -47,8 +48,14 @@ export function TopBar({ achievements, onAchievementsChange }: { achievements: A
   }
 
   return (
-    <header className="flex flex-wrap items-center gap-4">
-      <div className="relative min-w-[220px] flex-1">
+    <header className="flex items-center gap-3 md:flex-wrap md:gap-4">
+      {/* Phones get a greeting where desktop shows the search box */}
+      <div className="min-w-0 flex-1 md:hidden">
+        <p className="truncate text-xl font-bold text-foreground">Hello, {firstName}! 👋</p>
+        <p className="truncate text-xs text-muted-foreground">Let&apos;s begin our journey to better health today</p>
+      </div>
+
+      <div className="relative hidden min-w-[220px] flex-1 md:block">
         <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
         <input
           type="search"
@@ -58,9 +65,9 @@ export function TopBar({ achievements, onAchievementsChange }: { achievements: A
         />
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
         <div className="flex items-center gap-2">
-          <Sun className="size-4 text-warning" />
+          <Sun className="hidden size-4 text-warning sm:block" />
           <button
             type="button"
             role="switch"
@@ -76,7 +83,7 @@ export function TopBar({ achievements, onAchievementsChange }: { achievements: A
               )}
             />
           </button>
-          <Moon className="size-4 text-muted-foreground" />
+          <Moon className="hidden size-4 text-muted-foreground sm:block" />
         </div>
 
         <span className="hidden h-8 w-px bg-border sm:block" />
@@ -84,7 +91,7 @@ export function TopBar({ achievements, onAchievementsChange }: { achievements: A
         <button
           type="button"
           aria-label="Messages"
-          className="flex size-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          className="hidden size-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground sm:flex"
         >
           <Mail className="size-5" />
         </button>

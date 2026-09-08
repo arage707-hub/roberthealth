@@ -1,0 +1,2605 @@
+[browser] ⨯ unhandledRejection: TypeError: Failed to fetch
+    at loadAchievements (components/dashboard/dashboard-page.tsx:32:30)
+  30 |       const { data } = await getSupabaseClient().auth.getSession()
+  31 |       if (!data.session?.access_token) return
+> 32 |       const response = await fetch(`${apiBaseUrl}/api/achievements`, { headers: { Authorization: `Bearer ${data.session.access_token}` } })
+     |                              ^
+  33 |       if (!response.ok) return
+  34 |       const summary = await response.json() as AchievementSummary
+  35 |       setAchievements(summary)
+[browser] ⨯ unhandledRejection: TypeError: Failed to fetch
+    at loadAchievements (components/dashboard/dashboard-page.tsx:32:30)
+  30 |       const { data } = await getSupabaseClient().auth.getSession()
+  31 |       if (!data.session?.access_token) return
+> 32 |       const response = await fetch(`${apiBaseUrl}/api/achievements`, { headers: { Authorization: `Bearer ${data.session.access_token}` } })
+     |                              ^
+  33 |       if (!response.ok) return
+  34 |       const summary = await response.json() as AchievementSummary
+  35 |       setAchievements(summary)
+[browser] ⨯ unhandledRejection: TypeError: Failed to fetch
+    at loadAchievements (components/dashboard/dashboard-page.tsx:32:30)
+  30 |       const { data } = await getSupabaseClient().auth.getSession()
+  31 |       if (!data.session?.access_token) return
+> 32 |       const response = await fetch(`${apiBaseUrl}/api/achievements`, { headers: { Authorization: `Bearer ${data.session.access_token}` } })
+     |                              ^
+  33 |       if (!response.ok) return
+  34 |       const summary = await response.json() as AchievementSummary
+  35 |       setAchievements(summary)
+[browser] ⨯ unhandledRejection: TypeError: Failed to fetch
+    at loadAchievements (components/dashboard/dashboard-page.tsx:32:30)
+  30 |       const { data } = await getSupabaseClient().auth.getSession()
+  31 |       if (!data.session?.access_token) return
+> 32 |       const response = await fetch(`${apiBaseUrl}/api/achievements`, { headers: { Authorization: `Bearer ${data.session.access_token}` } })
+     |                              ^
+  33 |       if (!response.ok) return
+  34 |       const summary = await response.json() as AchievementSummary
+  35 |       setAchievements(summary)
+[Server HMR] Update failed, full reload needed: SyntaxError: Identifier 'voiceOpen' has already been declared
+    at eval (<anonymous>)
+[browser] ./components/dashboard/ai-chat.tsx:70:21
+Error: the name `setVoiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |                     ^^^^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:22
+Error: the name `setVoiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |                      ^^^^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:27
+Error: the name `setVoiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |                           ^^^^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:10
+Error: the name `voiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |          ^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:79:9
+Error: the name `voiceSessionRef` is defined multiple times
+  77 |   const speechBaseInputRef = useRef("")
+  78 |   const voiceSessionRef = useRef(false)
+> 79 |   const voiceSessionRef = useRef(false)
+     |         ^^^^^^^^^^^^^^^
+  80 |   const [composerPosition, setComposerPosition] = useState<{ left: number; width: number }...
+  81 |
+  82 |   useEffect(() => {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:10
+Error: the name `voiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |          ^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:10
+Error: the name `voiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |          ^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:21
+Error: the name `setVoiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |                     ^^^^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:22
+Error: the name `setVoiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |                      ^^^^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:27
+Error: the name `setVoiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |                           ^^^^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:10
+Error: the name `voiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |          ^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:79:9
+Error: the name `voiceSessionRef` is defined multiple times
+  77 |   const speechBaseInputRef = useRef("")
+  78 |   const voiceSessionRef = useRef(false)
+> 79 |   const voiceSessionRef = useRef(false)
+     |         ^^^^^^^^^^^^^^^
+  80 |   const [composerPosition, setComposerPosition] = useState<{ left: number; width: number }...
+  81 |
+  82 |   useEffect(() => {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:10
+Error: the name `voiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |          ^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:10
+Error: the name `voiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |          ^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:21
+Error: the name `setVoiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |                     ^^^^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:22
+Error: the name `setVoiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |                      ^^^^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:27
+Error: the name `setVoiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |                           ^^^^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:10
+Error: the name `voiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |          ^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:79:9
+Error: the name `voiceSessionRef` is defined multiple times
+  77 |   const speechBaseInputRef = useRef("")
+  78 |   const voiceSessionRef = useRef(false)
+> 79 |   const voiceSessionRef = useRef(false)
+     |         ^^^^^^^^^^^^^^^
+  80 |   const [composerPosition, setComposerPosition] = useState<{ left: number; width: number }...
+  81 |
+  82 |   useEffect(() => {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:10
+Error: the name `voiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |          ^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:10
+Error: the name `voiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |          ^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:21
+Error: the name `setVoiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |                     ^^^^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:22
+Error: the name `setVoiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |                      ^^^^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:27
+Error: the name `setVoiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |                           ^^^^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:10
+Error: the name `voiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |          ^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:79:9
+Error: the name `voiceSessionRef` is defined multiple times
+  77 |   const speechBaseInputRef = useRef("")
+  78 |   const voiceSessionRef = useRef(false)
+> 79 |   const voiceSessionRef = useRef(false)
+     |         ^^^^^^^^^^^^^^^
+  80 |   const [composerPosition, setComposerPosition] = useState<{ left: number; width: number }...
+  81 |
+  82 |   useEffect(() => {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:10
+Error: the name `voiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |          ^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:10
+Error: the name `voiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |          ^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:21
+Error: the name `setVoiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |                     ^^^^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:22
+Error: the name `setVoiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |                      ^^^^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:27
+Error: the name `setVoiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |                           ^^^^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:10
+Error: the name `voiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |          ^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:79:9
+Error: the name `voiceSessionRef` is defined multiple times
+  77 |   const speechBaseInputRef = useRef("")
+  78 |   const voiceSessionRef = useRef(false)
+> 79 |   const voiceSessionRef = useRef(false)
+     |         ^^^^^^^^^^^^^^^
+  80 |   const [composerPosition, setComposerPosition] = useState<{ left: number; width: number }...
+  81 |
+  82 |   useEffect(() => {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:10
+Error: the name `voiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |          ^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:10
+Error: the name `voiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |          ^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:21
+Error: the name `setVoiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |                     ^^^^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:22
+Error: the name `setVoiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |                      ^^^^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:27
+Error: the name `setVoiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |                           ^^^^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:10
+Error: the name `voiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |          ^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:79:9
+Error: the name `voiceSessionRef` is defined multiple times
+  77 |   const speechBaseInputRef = useRef("")
+  78 |   const voiceSessionRef = useRef(false)
+> 79 |   const voiceSessionRef = useRef(false)
+     |         ^^^^^^^^^^^^^^^
+  80 |   const [composerPosition, setComposerPosition] = useState<{ left: number; width: number }...
+  81 |
+  82 |   useEffect(() => {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:10
+Error: the name `voiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |          ^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:10
+Error: the name `voiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |          ^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:21
+Error: the name `setVoiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |                     ^^^^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:22
+Error: the name `setVoiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |                      ^^^^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:27
+Error: the name `setVoiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |                           ^^^^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:10
+Error: the name `voiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |          ^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:79:9
+Error: the name `voiceSessionRef` is defined multiple times
+  77 |   const speechBaseInputRef = useRef("")
+  78 |   const voiceSessionRef = useRef(false)
+> 79 |   const voiceSessionRef = useRef(false)
+     |         ^^^^^^^^^^^^^^^
+  80 |   const [composerPosition, setComposerPosition] = useState<{ left: number; width: number }...
+  81 |
+  82 |   useEffect(() => {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:10
+Error: the name `voiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |          ^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:10
+Error: the name `voiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |          ^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:21
+Error: the name `setVoiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |                     ^^^^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:22
+Error: the name `setVoiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |                      ^^^^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:27
+Error: the name `setVoiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |                           ^^^^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:70:10
+Error: the name `voiceOpen` is defined multiple times
+  68 |   const [voiceStage, setVoiceStage] = useState<"idle" | "listening" | "thinking" | "speaki...
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+> 70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+     |          ^^^^^^^^^
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:79:9
+Error: the name `voiceSessionRef` is defined multiple times
+  77 |   const speechBaseInputRef = useRef("")
+  78 |   const voiceSessionRef = useRef(false)
+> 79 |   const voiceSessionRef = useRef(false)
+     |         ^^^^^^^^^^^^^^^
+  80 |   const [composerPosition, setComposerPosition] = useState<{ left: number; width: number }...
+  81 |
+  82 |   useEffect(() => {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:71:10
+Error: the name `voiceStage` is defined multiple times
+  69 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+> 71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+     |          ^^^^^^^^^^
+  72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/dashboard/ai-chat.tsx:72:10
+Error: the name `voiceTranscript` is defined multiple times
+  70 |   const [voiceOpen, setVoiceOpen] = useState(false)
+  71 |   const [voiceStage, setVoiceStage] = useState<VoiceStage>("idle")
+> 72 |   const [voiceTranscript, setVoiceTranscript] = useState("")
+     |          ^^^^^^^^^^^^^^^
+  73 |   const chatRef = useRef<HTMLElement>(null)
+  74 |   const messagesRef = useRef<HTMLDivElement>(null)
+  75 |   const fileInputRef = useRef<HTMLInputElement>(null)
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/ai-chat.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/ai-chat.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+⨯ ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  [90m11 |[0m } [36mfrom[0m [32m"lucide-react"[0m
+  [90m12 |[0m [36mimport[0m { [33mAuthGate[0m } [36mfrom[0m [32m"@/components/auth/auth-gate"[0m
+[31m[1m>[0m [90m13 |[0m [36mimport[0m { [33mAiChat[0m } [36mfrom[0m [32m"@/components/dashboard/ai-chat"[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m [36mimport[0m { [33mAchievementBadge[0m } [36mfrom[0m [32m"@/components/dashboard/achievement-badge"[0m
+  [90m15 |[0m [36mimport[0m { getSupabaseClient } [36mfrom[0m [32m"@/lib/supabase-client"[0m
+  [90m16 |[0m [36mimport[0m { useLatestAssessment, [36mtype[0m [33mAssessmentPercentages[0m } [36mfrom[0m [32m"@/lib/use-latest-assessment"[0m
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] Uncaught Error: ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./app/dashboard-preview/page.tsx:13:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./app/dashboard-preview/page.tsx:13:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard-preview/page.tsx [Client Component Browser]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard-preview/page.tsx [Client Component SSR]
+    ./app/dashboard-preview/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[browser] Uncaught ReferenceError: Paperclip is not defined
+    at AiChat (components/dashboard/ai-chat.tsx:254:255)
+    at Set.forEach (<anonymous>)
+    at DynamicDashboardPreview (app/dashboard-preview/page.tsx:367:1466)
+    at DashboardPreviewPage (app/dashboard-preview/page.tsx:371:20)
+  252 | ...="Talk to your Health AI Guide" className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-r from-[#238dd4] to-[#33d201] text-sm font-bold text-white shadow-sm transition-opacity hover:opacity-90 md:h-11 md:...
+  253 | ...ech to text"} className={cn("grid size-11 place-items-center rounded-xl transition", listening ? "bg-red-500 text-white" : "bg-[#eef4f7] text-[#238dd4] hover:bg-[#e3eff5]")}>{listening ? <AudioLines className="size-5 animate-p...
+> 254 | ...or image" className="grid size-11 place-items-center rounded-xl bg-[#eef4f7] text-[#238dd4] hover:bg-[#e3eff5]"><Paperclip className="size-5" /></button>
+      |                                                                                                                     ^
+  255 | ... aria-pressed={mediaOpen} className={cn("grid size-11 place-items-center rounded-xl transition", mediaOpen ? "bg-[#dff8d7] text-[#247c0a]" : "bg-[#eef4f7] text-[#238dd4] hover:bg-[#e3eff5]")}><PanelRight className="size-5" /><...
+  256 | ...
+  257 | ...
+⚠ Found a change in next.config.mjs. Restarting the server to apply the changes...
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/dashboard-preview/page.tsx:13:1
+Error: Module not found: Can't resolve '@/components/dashboard/ai-chat'
+  11 | } from "lucide-react"
+  12 | import { AuthGate } from "@/components/auth/auth-gate"
+> 13 | import { AiChat } from "@/components/dashboard/ai-chat"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+  15 | import { getSupabaseClient } from "@/lib/supabase-client"
+  16 | import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
+
+Import map: aliased to relative './components/dashboard/ai-chat' inside of [project]/
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] Uncaught NotFoundError: Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.
+    at <unknown> (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:8417)
+    at p (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:10287)
+[browser] Uncaught NotFoundError: Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.
+    at <unknown> (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:8417)
+    at p (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:10287)
+[browser] Uncaught NotFoundError: Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.
+    at <unknown> (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:8417)
+    at p (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:10287)
+[browser] Uncaught NotFoundError: Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.
+    at <unknown> (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:8417)
+    at p (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:10287)
+[browser] Uncaught NotFoundError: Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.
+    at <unknown> (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:8417)
+    at p (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:10287)
+[browser] Uncaught NotFoundError: Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.
+    at <unknown> (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:8417)
+    at p (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:10287)
+[browser] Uncaught NotFoundError: Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.
+    at <unknown> (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:8417)
+    at p (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:10287)
+[browser] Uncaught NotFoundError: Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.
+    at <unknown> (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:8417)
+    at p (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:10287)
+[browser] Uncaught NotFoundError: Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.
+    at <unknown> (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:8417)
+    at p (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:10287)
+[browser] Uncaught NotFoundError: Failed to execute 'releasePointerCapture' on 'Element': No active pointer with the given id is found.
+    at <unknown> (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:8417)
+    at p (file://C:/wamp64/www/robert_ai/frontend/.next/dev/static/chunks/04rc_next_dist_compiled_next-devtools_index_1s0o2e1.js:3429:10287)
+[browser] ./app/dashboard-preview/page.tsx:220:10
+Error: the name `LeftNav` is defined multiple times
+  218 | }
+  219 |
+> 220 | function LeftNav({ unread, active, isAdmin, onNavigate, onPremium, onLogout, className = ...
+      |          ^^^^^^^
+  221 |   return <aside className={`flex-col bg-white px-6 py-8 xl:min-h-screen xl:py-11 ${classN...
+  222 |     <div className="flex items-center justify-between"><Brand />{onClose ? <button type="...
+  223 |     <nav className="mt-8 space-y-2 xl:mt-12">{navItems.map(([Icon, label, badge]) => { co...
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx 
+[browser] Uncaught ReferenceError: Menu is not defined
+    at DynamicDashboardPreview (app/dashboard-preview/page.tsx:369:594)
+    at Set.forEach (<anonymous>)
+    at DashboardPreviewPage (app/dashboard-preview/page.tsx:404:21)
+  367 | ...
+  368 | ...
+> 369 | ...expanded={menuOpen} className="relative grid size-10 place-items-center rounded-xl bg-[#eef4fa] text-[#52636f]"><Menu className="size-5" />{data.achievements?.unread_notifications ? <span className="absolute -right-1 -top-1 mi...
+      |                                                                                                                     ^
+  370 | ...w-[#238dd4]/5"><Search className="size-5 text-[#238dd4]" /><input className="w-full bg-transparent text-sm outline-none" placeholder="Search your dashboard" /></label><button type="button" onClick={() => startAssessment(false)...
+  371 | ...
+  372 | ...ata.completingId} generating={data.generating} onComplete={data.completeTask} onGenerate={data.generateTasks} /></div><footer className="mt-10 flex flex-col items-center gap-3 text-center text-xs text-[#8e8f95] xl:flex-row xl:...
+[browser] Uncaught ReferenceError: Menu is not defined
+    at DynamicDashboardPreview (app/dashboard-preview/page.tsx:369:594)
+    at DashboardPreviewPage (app/dashboard-preview/page.tsx:382:20)
+  367 | ...
+  368 | ...
+> 369 | ...expanded={menuOpen} className="relative grid size-10 place-items-center rounded-xl bg-[#eef4fa] text-[#52636f]"><Menu className="size-5" />{data.achievements?.unread_notifications ? <span className="absolute -right-1 -top-1 mi...
+      |                                                                                                                     ^
+  370 | ...w-[#238dd4]/5"><Search className="size-5 text-[#238dd4]" /><input className="w-full bg-transparent text-sm outline-none" placeholder="Search your dashboard" /></label><button type="button" onClick={() => startAssessment(false)...
+  371 | ...
+  372 | ...ata.completingId} generating={data.generating} onComplete={data.completeTask} onGenerate={data.generateTasks} /></div><footer className="mt-10 flex flex-col items-center gap-3 text-center text-xs text-[#8e8f95] xl:flex-row xl:...
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[browser] Uncaught ReferenceError: Menu is not defined
+    at DynamicDashboardPreview (app/dashboard-preview/page.tsx:357:594)
+    at DashboardPreviewPage (app/dashboard-preview/page.tsx:370:20)
+  355 | ...
+  356 | ...
+> 357 | ...expanded={menuOpen} className="relative grid size-10 place-items-center rounded-xl bg-[#eef4fa] text-[#52636f]"><Menu className="size-5" />{data.achievements?.unread_notifications ? <span className="absolute -right-1 -top-1 mi...
+      |                                                                                                                     ^
+  358 | ...w-[#238dd4]/5"><Search className="size-5 text-[#238dd4]" /><input className="w-full bg-transparent text-sm outline-none" placeholder="Search your dashboard" /></label><button type="button" onClick={() => startAssessment(false)...
+  359 | ...
+  360 | ...ata.completingId} generating={data.generating} onComplete={data.completeTask} onGenerate={data.generateTasks} /></div><footer className="mt-10 flex flex-col items-center gap-3 text-center text-xs text-[#8e8f95] xl:flex-row xl:...
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[browser] ./app/dashboard-preview/page.tsx:1:114
+Error: The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+> 1 | ...shboardData, type DashboardData as PreviewData, type HealthTask } from "@/lib/use-dashbo...
+    |                                                                                                    
+> 2 | ...
+    | ^
+> 3 | ...
+    |    ^^^^^^^^^
+  4 | ...
+  5 | ...t, useMemo, useState } from "react"
+  6 | ...r } from "next/navigation"
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx 
+[browser] ./app/dashboard-preview/page.tsx:5:7
+Error: You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  3 | "use client"
+  4 |
+> 5 | import { useEffect, useMemo, useState } from "react"
+    |       ^^^^^^^^^
+  6 | import { useRouter } from "next/navigation"
+  7 | import type { LucideIcon } from "lucide-react"
+  8 | import {
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx 
+[browser] ./app/dashboard-preview/page.tsx:6:7
+Error: You're importing a module that depends on `useRouter` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  4 |
+  5 | import { useEffect, useMemo, useState } from "react"
+> 6 | import { useRouter } from "next/navigation"
+    |       ^^^^^^^^^
+  7 | import type { LucideIcon } from "lucide-react"
+  8 | import {
+  9 |   Activity, Bell, ChevronDown, ChevronLeft, ChevronRight,
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx 
+[browser] ./app/dashboard-preview/page.tsx:5:27
+Error: You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  3 | "use client"
+  4 |
+> 5 | import { useEffect, useMemo, useState } from "react"
+    |                           ^^^^^^^^
+  6 | import { useRouter } from "next/navigation"
+  7 | import type { LucideIcon } from "lucide-react"
+  8 | import {
+
+Ecmascript file had an error
+
+Import trace:
+  Server Component:
+    ./app/dashboard-preview/page.tsx
+    ./app/page.tsx 
+[browser] Uncaught ReferenceError: healthCategories is not defined
+    at LowerContent.useMemo[featuredIds] (app/dashboard-preview/page.tsx:138:28)
+    at LowerContent (app/dashboard-preview/page.tsx:136:30)
+    at DynamicDashboardPreview (app/dashboard-preview/page.tsx:237:907)
+    at DashboardPreviewPage (app/dashboard-preview/page.tsx:209:20)
+  136 |   const featuredIds = useMemo(() => {
+  137 |     const chosen: string[] = []
+> 138 |     for (const category of healthCategories) {
+      |                            ^
+  139 |       const inCategory = tasks.filter((task) => task.category.toLowerCase() === category.key.toLowerCase())
+  140 |       const open = inCategory.filter((task) => !task.completed_current_period)
+  141 |       const pick = pickRandom(open.length ? open : inCategory)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+    at Set.forEach (<anonymous>) (<anonymous>)

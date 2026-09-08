@@ -3,11 +3,10 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { Mail } from "lucide-react"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import { SocialButtons } from "./social-buttons"
-
-const fieldClass =
-  "w-full rounded-full border border-transparent bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:bg-card focus:outline-none focus:ring-2 focus:ring-ring/30 transition-colors"
+import { Checkbox, ErrorNote, Eyebrow, Field, Heading, PasswordField, PrimaryButton, linkClass } from "./auth-ui"
 
 export function LoginForm() {
   const router = useRouter()
@@ -15,10 +14,12 @@ export function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null)
+  const [submitting, setSubmitting] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
+    setSubmitting(true)
 
     try {
       const supabase = getSupabaseClient()
@@ -57,87 +58,58 @@ export function LoginForm() {
       router.push("/")
     } catch (error) {
       setError(error instanceof Error ? error.message : "Login failed")
+    } finally {
+      setSubmitting(false)
     }
   }
 
   return (
     <div className="mx-auto w-full max-w-sm">
-      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Welcome to HealthiPhy</p>
-      <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">Let's begin your journey together</h2>
-      <p className="mt-2 text-sm text-muted-foreground">
-        HealthiPhy offers science-backed insights, AI-driven tools, and community support to help you make informed decisions about your wellbeing. This platform is for informational purposes only and is not intended as medical advice.
-      </p>
+      <Eyebrow>Welcome back</Eyebrow>
+      <Heading title="Sign in to HealthiPhy" lead="Pick up where you left off on your journey to better health." />
 
       <div className="mt-7">
         <SocialButtons />
       </div>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-        <div className="space-y-1.5">
-          <label htmlFor="email" className="text-sm font-medium text-foreground">
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@healthiphy.ai"
-            className={fieldClass}
-          />
-        </div>
+        <Field
+          label="Email"
+          id="email"
+          icon={Mail}
+          type="email"
+          autoComplete="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="you@healthiphy.ai"
+        />
 
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
-            <label htmlFor="password" className="text-sm font-medium text-foreground">
-              Password
-            </label>
-            <Link href="/forgot-password" className="text-xs font-medium text-muted-foreground underline underline-offset-2 hover:text-foreground">
-              Forgot password?
-            </Link>
-          </div>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-            className={fieldClass}
-          />
-        </div>
+        <PasswordField
+          label="Password"
+          id="password"
+          autoComplete="current-password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter your password"
+          hint={<Link href="/forgot-password" className="text-xs font-semibold text-[#238dd4] hover:underline underline-offset-4">Forgot password?</Link>}
+        />
 
-        <label className="flex items-center gap-2.5 text-sm text-muted-foreground">
-          <input
-            type="checkbox"
-            checked={remember}
-            onChange={(e) => setRemember(e.target.checked)}
-            className="h-4 w-4 rounded border-border text-primary accent-primary"
-          />
-          <span>Keep me signed in</span>
-        </label>
+        <Checkbox label="Keep me signed in" checked={remember} onChange={(e) => setRemember(e.target.checked)} />
 
-        {error ? <p className="text-sm text-destructive">{error}</p> : null}
+        {error ? <ErrorNote>{error}</ErrorNote> : null}
 
-        <button
-          type="submit"
-          className="w-full rounded-full bg-foreground px-4 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
-        >
-          Sign in
-        </button>
+        <PrimaryButton loading={submitting}>{submitting ? "Signing in..." : "Sign in"}</PrimaryButton>
       </form>
 
-      <p className="mt-6 text-center text-sm text-muted-foreground">
+      <p className="mt-6 text-center text-sm text-[#687684]">
         Don&apos;t have an account?{" "}
-        <Link href="/signup" className="font-semibold text-foreground underline underline-offset-2">
-          Create one
-        </Link>
+        <Link href="/signup" className={linkClass}>Create one</Link>
       </p>
-      <p className="mt-4 text-center">
-        <Link href="/" className="text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground">
-          Back to dashboard
-        </Link>
+      <p className="mt-6 text-center text-xs leading-5 text-[#9a9ba1]">
+        HealthiPhy provides information only and is not a substitute for medical advice.
+        {" "}<Link href="/" className="underline underline-offset-2 hover:text-[#687684]">Back to dashboard</Link>
       </p>
     </div>
   )

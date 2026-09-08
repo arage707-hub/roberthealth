@@ -62,13 +62,16 @@ export function DashboardPage() {
   return (
     <div className="relative">
       <div className={showAssessmentPrompt ? "filter blur-sm transition-all duration-300" : ""}>
-        <div className="h-dvh overflow-hidden p-3 md:p-5">
-          <div className="mx-auto flex h-full max-w-[1600px] gap-4 overflow-hidden rounded-[2rem] bg-secondary/40 p-3 md:p-4">
-            <Sidebar active={activeView} onNavigate={setActiveView} contained />
+        <div className="min-h-dvh md:h-dvh md:overflow-hidden md:p-5">
+          <div className="mx-auto flex min-h-dvh max-w-[1600px] gap-4 bg-secondary/40 p-3 md:h-full md:min-h-0 md:overflow-hidden md:rounded-[2rem] md:p-4">
+            {/* Icon rail is desktop-only; phones use the MobileHeader menu instead */}
+            <div className="hidden md:contents">
+              <Sidebar active={activeView} onNavigate={setActiveView} contained />
+            </div>
 
-            <div className="grid h-full min-h-0 min-w-0 flex-1 grid-cols-1 gap-5 overflow-hidden xl:grid-cols-[1fr_360px]">
+            <div className="grid min-h-0 min-w-0 flex-1 grid-cols-1 gap-5 md:h-full md:overflow-hidden xl:grid-cols-[1fr_360px]">
               {/* Main column */}
-              <main className={`scrollbar-hidden flex h-full min-h-0 min-w-0 flex-col gap-5 ${activeView === "AI Chat" ? "overflow-hidden" : "overflow-y-auto pr-1"}`}>
+              <main className={`scrollbar-hidden flex min-h-0 min-w-0 flex-col gap-5 md:h-full ${activeView === "AI Chat" ? "overflow-hidden" : "md:overflow-y-auto md:pr-1"}`}>
                 <TopBar achievements={achievements} onAchievementsChange={setAchievements} />
                 {activeView === "AI Chat" ? (
                   <AiChat />
@@ -84,10 +87,21 @@ export function DashboardPage() {
                 )}
               </main>
 
-              {/* Schedule sidebar */}
-              <div className="h-full min-h-0 min-w-0 overflow-hidden">
+              {/* Schedule sidebar: sticky column on desktop, stacked card on phones */}
+              <div className={`min-h-0 min-w-0 md:h-full md:overflow-hidden ${activeView === "AI Chat" ? "hidden md:block" : ""}`}>
                 <SchedulePanel contained />
               </div>
+
+              {activeView !== "AI Chat" ? (
+                <footer className="pb-2 pt-1 text-center text-xs text-muted-foreground md:hidden">
+                  <p>Copyright © {new Date().getFullYear()} HealthiPhy.ai</p>
+                  <nav className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1">
+                    <a href="#" className="hover:text-foreground">Privacy Policy</a>
+                    <a href="#" className="hover:text-foreground">Term and conditions</a>
+                    <a href="#" className="hover:text-foreground">Contact</a>
+                  </nav>
+                </footer>
+              ) : null}
             </div>
           </div>
         </div>

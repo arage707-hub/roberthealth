@@ -3,9 +3,7 @@
 import Link from "next/link"
 import { FormEvent, useEffect, useState } from "react"
 import { getSupabaseClient } from "@/lib/supabase-client"
-
-const fieldClass =
-  "w-full rounded-full border border-transparent bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:bg-card focus:outline-none focus:ring-2 focus:ring-ring/30 transition-colors"
+import { ErrorNote, Eyebrow, Heading, Note, PasswordField, PrimaryButton, linkClass } from "./auth-ui"
 
 export function ResetPasswordForm() {
   const [password, setPassword] = useState("")
@@ -56,33 +54,30 @@ export function ResetPasswordForm() {
 
   return (
     <div className="mx-auto w-full max-w-sm">
-      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Password recovery</p>
-      <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">Choose a new password</h2>
-      <p className="mt-2 text-sm text-muted-foreground">Create a strong password you don&apos;t use on other websites.</p>
+      <Eyebrow>Password recovery</Eyebrow>
+      <Heading title="Choose a new password" lead="Create a strong password you don't use on other websites." />
 
       {success ? (
-        <div className="mt-6 space-y-4 rounded-2xl bg-emerald-50 px-4 py-4 text-sm text-emerald-800">
-          <p>Your password has been updated. You can now sign in.</p>
-          <Link href="/login" className="font-semibold underline underline-offset-2">Go to sign in</Link>
+        <div className="mt-6">
+          <Note tone="success">
+            <p>Your password has been updated. You can now sign in.</p>
+            <Link href="/login" className="font-semibold underline underline-offset-4">Go to sign in</Link>
+          </Note>
         </div>
       ) : !ready ? (
-        <div className="mt-6 rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-800">This reset link is invalid or has expired. Request a new password-reset link.</div>
+        <div className="mt-6">
+          <Note tone="warning"><p>This reset link is invalid or has expired. Request a new password-reset link.</p></Note>
+        </div>
       ) : (
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          <div className="space-y-1.5">
-            <label htmlFor="password" className="text-sm font-medium text-foreground">New password</label>
-            <input id="password" name="password" type="password" required minLength={8} autoComplete="new-password" value={password} onChange={(event) => setPassword(event.target.value)} className={fieldClass} />
-          </div>
-          <div className="space-y-1.5">
-            <label htmlFor="confirmPassword" className="text-sm font-medium text-foreground">Confirm new password</label>
-            <input id="confirmPassword" name="confirmPassword" type="password" required minLength={8} autoComplete="new-password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} className={fieldClass} />
-          </div>
-          {error ? <p className="text-sm text-destructive">{error}</p> : null}
-          <button type="submit" disabled={saving} className="w-full rounded-full bg-foreground px-4 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60">{saving ? "Updating password..." : "Update password"}</button>
+          <PasswordField label="New password" id="password" required minLength={8} autoComplete="new-password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="At least 8 characters" />
+          <PasswordField label="Confirm new password" id="confirmPassword" required minLength={8} autoComplete="new-password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} placeholder="Repeat your new password" />
+          {error ? <ErrorNote>{error}</ErrorNote> : null}
+          <PrimaryButton loading={saving}>{saving ? "Updating password..." : "Update password"}</PrimaryButton>
         </form>
       )}
 
-      <p className="mt-6 text-center text-sm text-muted-foreground"><Link href="/forgot-password" className="font-semibold text-foreground underline underline-offset-2">Request a new link</Link></p>
+      <p className="mt-6 text-center text-sm text-[#687684]"><Link href="/forgot-password" className={linkClass}>Request a new link</Link></p>
     </div>
   )
 }

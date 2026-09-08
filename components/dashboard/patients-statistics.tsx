@@ -34,8 +34,8 @@ export function PatientsStatistics() {
 
   return (
     <section className="flex min-w-0 flex-col rounded-3xl border border-border bg-card p-5">
-      <div className="flex items-start justify-between">
-        <div>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0 flex-1 basis-56">
           <h2 className="text-lg font-semibold text-foreground">Your Health Summary</h2>
           <p className="text-sm text-muted-foreground">After answering the questionnaire: how healthy you are, what to improve, and AI suggestions.</p>
         </div>

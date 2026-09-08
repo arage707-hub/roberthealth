@@ -152,6 +152,30 @@
 
 .badge-shine > span { animation: badge-light-sweep 3.4s ease-in-out infinite; }
 
+.preview-ruler {
+  background:
+    repeating-linear-gradient(90deg, #d7d7da 0 1px, transparent 1px 10px);
+  mask-image: linear-gradient(to bottom, #000 0 60%, transparent 60%);
+}
+
+.preview-stripes {
+  background-image: repeating-linear-gradient(135deg, transparent 0 8px, rgb(255 255 255 / 85%) 8px 10px);
+}
+
+.preview-sleep-bar::before,
+.preview-sleep-bar::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  transform: translateX(-50%);
+}
+
+.preview-sleep-bar::before { top: -10px; background: #ededee; }
+.preview-sleep-bar::after { bottom: -9px; background: inherit; }
+
 /* Keep the Admin/User switch thumb inside its track at every zoom level. */
 button[role="switch"] > span:first-child {
   box-sizing: border-box;
@@ -181,6 +205,99 @@ button[role="switch"] > span:first-child > span {
   display: none;
 }
 
+/* The redesigned dashboard header does not use a search control. */
+label:has(> input[placeholder="Search your dashboard"]) {
+  display: none;
+}
+
+/* Give the messages workspace the dashboard's main and right columns. */
+main:has(section[data-ai-chat-screen="true"]) {
+  grid-column: span 2 / span 2;
+  padding: 0 !important;
+  background: white;
+}
+
+main:has(section[data-ai-chat-screen="true"]) + aside {
+  display: none;
+}
+
+main:has(section[data-ai-chat-screen="true"]) > header {
+  display: none;
+}
+
+main:has(section[data-ai-chat-screen="true"]) > div:has(> section[data-ai-chat-screen="true"]) {
+  height: 100vh !important;
+  min-height: 100vh !important;
+  margin-top: 0 !important;
+}
+
+@media (max-width: 767px) {
+  body:has(section[data-ai-chat-screen="true"]) {
+    overflow: hidden;
+  }
+
+  body:has(section[data-ai-chat-screen="true"]) div.grid.min-h-screen {
+    min-width: 0 !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  body:has(section[data-ai-chat-screen="true"]) div.grid.min-h-screen > aside:first-child {
+    display: none;
+  }
+
+  main:has(section[data-ai-chat-screen="true"]) {
+    grid-column: 1 !important;
+    width: 100vw;
+    min-width: 0;
+  }
+
+  main:has(section[data-ai-chat-screen="true"]) > div:has(> section[data-ai-chat-screen="true"]) {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+  }
+}
+
+/* Voice guide sphere: "talking" breath (uneven, like speech) plus light radiating outward. */
+@keyframes voice-talk {
+  0% { transform: scale(1); }
+  18% { transform: scale(0.93); }
+  36% { transform: scale(1.05); }
+  52% { transform: scale(0.96); }
+  70% { transform: scale(1.03); }
+  86% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+@keyframes voice-radiate {
+  0% { transform: scale(0.85); opacity: 0.65; }
+  100% { transform: scale(1.75); opacity: 0; }
+}
+
+@keyframes voice-glow {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.25); opacity: 0.95; }
+}
+
+/* Click on the sphere: a colour splash bursts outward from behind it and dissolves. */
+@keyframes voice-splash {
+  0% { transform: scale(0.5); opacity: 0.85; }
+  60% { opacity: 0.45; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+@keyframes voice-splash-ring {
+  0% { transform: scale(0.75); opacity: 0.9; border-width: 5px; }
+  100% { transform: scale(1.25); opacity: 0; border-width: 1px; }
+}
+
+.voice-splash { animation: voice-splash 0.95s cubic-bezier(0.2, 0.7, 0.3, 1) forwards; }
+.voice-splash-ring { animation: voice-splash-ring 0.8s ease-out forwards; }
+
+.voice-talking { animation: voice-talk 1.15s ease-in-out infinite; }
+.voice-radiating { animation: voice-radiate 2.1s ease-out infinite; }
+.voice-glowing { animation: voice-glow 1.4s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   .badge-shine > span { animation: none; }
+  .voice-talking, .voice-radiating, .voice-glowing, .voice-splash, .voice-splash-ring { animation: none; opacity: 0; }
 }

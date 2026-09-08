@@ -3,11 +3,11 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { Mail, UserRound } from "lucide-react"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import { SocialButtons } from "./social-buttons"
+import { Checkbox, ErrorNote, Eyebrow, Field, Heading, PasswordField, PrimaryButton, linkClass } from "./auth-ui"
 
-const fieldClass =
-  "w-full rounded-full border border-transparent bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:bg-card focus:outline-none focus:ring-2 focus:ring-ring/30 transition-colors"
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://roberthealth.vercel.app").replace(/\/$/, "")
 
 export function SignupForm() {
@@ -18,10 +18,12 @@ export function SignupForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null)
+  const [submitting, setSubmitting] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
+    setSubmitting(true)
 
     try {
       const supabase = getSupabaseClient()
@@ -58,13 +60,15 @@ export function SignupForm() {
       router.push("/verify")
     } catch (error) {
       setError(error instanceof Error ? error.message : "Signup failed")
+    } finally {
+      setSubmitting(false)
     }
   }
 
   return (
     <div className="mx-auto w-full max-w-sm">
-      <h1 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Let's begin your journey together</h1>
-      <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">Sign up to get started</h2>
+      <Eyebrow>Get started</Eyebrow>
+      <Heading title="Create your account" lead="Let's begin your journey together. It only takes a minute." />
 
       <div className="mt-7">
         <SocialButtons />
@@ -72,105 +76,69 @@ export function SignupForm() {
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <div className="grid grid-cols-2 gap-3">
-          <div className="space-y-1.5">
-            <label htmlFor="firstName" className="text-sm font-medium text-foreground">
-              First name
-            </label>
-            <input
+          <Field
+            label="First name"
             id="firstName"
-            name="firstName"
+            icon={UserRound}
+            autoComplete="given-name"
+            required
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="Johan"
-            className={fieldClass}
           />
-          </div>
-          <div className="space-y-1.5">
-            <label htmlFor="lastName" className="text-sm font-medium text-foreground">
-              Last name
-            </label>
-            <input
+          <Field
+            label="Last name"
             id="lastName"
-            name="lastName"
+            icon={UserRound}
+            autoComplete="family-name"
+            required
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Carter"
-            className={fieldClass}
-          />
-          </div>
-        </div>
-
-        <div className="space-y-1.5">
-          <label htmlFor="email" className="text-sm font-medium text-foreground">
-            Work email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="johan@medicare.com"
-            className={fieldClass}
           />
         </div>
 
-        <div className="space-y-1.5">
-          <label htmlFor="password" className="text-sm font-medium text-foreground">
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="At least 8 characters"
-            className={fieldClass}
-          />
-        </div>
+        <Field
+          label="Email"
+          id="email"
+          icon={Mail}
+          type="email"
+          autoComplete="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="johan@example.com"
+        />
 
-        <label className="flex items-start gap-2.5 text-sm text-muted-foreground">
-          <input
-            type="checkbox"
-            checked={agreed}
-            onChange={(e) => setAgreed(e.target.checked)}
-            className="mt-0.5 h-4 w-4 rounded border-border text-primary accent-primary"
-          />
-          <span>
-            I agree to the{" "}
-            <a href="#" className="font-medium text-foreground underline underline-offset-2">
-              Terms
-            </a>{" "}
-            and{" "}
-            <a href="#" className="font-medium text-foreground underline underline-offset-2">
-              Privacy Policy
-            </a>
-            .
-          </span>
-        </label>
+        <PasswordField
+          label="Password"
+          id="password"
+          autoComplete="new-password"
+          required
+          minLength={8}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="At least 8 characters"
+        />
 
-        {error ? <p className="text-sm text-destructive">{error}</p> : null}
+        <Checkbox
+          checked={agreed}
+          onChange={(e) => setAgreed(e.target.checked)}
+          label={<>I agree to the <a href="#" className={linkClass}>Terms</a> and <a href="#" className={linkClass}>Privacy Policy</a>.</>}
+        />
 
-        <button
-          type="submit"
-          disabled={!agreed}
-          className="w-full rounded-full bg-foreground px-4 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          Create account
-        </button>
+        {error ? <ErrorNote>{error}</ErrorNote> : null}
+
+        <PrimaryButton loading={submitting} disabled={!agreed}>{submitting ? "Creating account..." : "Create account"}</PrimaryButton>
       </form>
 
-      <p className="mt-6 text-center text-sm text-muted-foreground">
+      <p className="mt-6 text-center text-sm text-[#687684]">
         Already have an account?{" "}
-        <Link href="/login" className="font-semibold text-foreground underline underline-offset-2">
-          Sign in
-        </Link>
+        <Link href="/login" className={linkClass}>Sign in</Link>
       </p>
-      <p className="mt-4 text-center">
-        <Link href="/" className="text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground">
-          Back to dashboard
-        </Link>
+      <p className="mt-6 text-center text-xs leading-5 text-[#9a9ba1]">
+        HealthiPhy provides information only and is not a substitute for medical advice.
+        {" "}<Link href="/" className="underline underline-offset-2 hover:text-[#687684]">Back to dashboard</Link>
       </p>
     </div>
   )

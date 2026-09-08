@@ -2,10 +2,10 @@
 
 import Link from "next/link"
 import { FormEvent, useState } from "react"
+import { Mail } from "lucide-react"
 import { getSupabaseClient } from "@/lib/supabase-client"
+import { ErrorNote, Eyebrow, Field, Heading, Note, PrimaryButton, linkClass } from "./auth-ui"
 
-const fieldClass =
-  "w-full rounded-full border border-transparent bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:bg-card focus:outline-none focus:ring-2 focus:ring-ring/30 transition-colors"
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://roberthealth.vercel.app").replace(/\/$/, "")
 
 export function ForgotPasswordForm() {
@@ -34,28 +34,24 @@ export function ForgotPasswordForm() {
 
   return (
     <div className="mx-auto w-full max-w-sm">
-      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Password recovery</p>
-      <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">Reset your password</h2>
-      <p className="mt-2 text-sm text-muted-foreground">Enter your email and we&apos;ll send you a secure link to choose a new password.</p>
+      <Eyebrow>Password recovery</Eyebrow>
+      <Heading title="Reset your password" lead="Enter your email and we'll send you a secure link to choose a new password." />
 
       {sent ? (
-        <div className="mt-6 rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-          If an account exists for that email, a password-reset link has been sent. Check your inbox and spam folder.
+        <div className="mt-6">
+          <Note tone="success">
+            <p>If an account exists for that email, a password-reset link has been sent. Check your inbox and spam folder.</p>
+          </Note>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          <div className="space-y-1.5">
-            <label htmlFor="email" className="text-sm font-medium text-foreground">Email</label>
-            <input id="email" name="email" type="email" required autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@healthiphy.ai" className={fieldClass} />
-          </div>
-          {error ? <p className="text-sm text-destructive">{error}</p> : null}
-          <button type="submit" disabled={sending} className="w-full rounded-full bg-foreground px-4 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60">
-            {sending ? "Sending link..." : "Send reset link"}
-          </button>
+          <Field label="Email" id="email" icon={Mail} type="email" required autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@healthiphy.ai" />
+          {error ? <ErrorNote>{error}</ErrorNote> : null}
+          <PrimaryButton loading={sending}>{sending ? "Sending link..." : "Send reset link"}</PrimaryButton>
         </form>
       )}
 
-      <p className="mt-6 text-center text-sm text-muted-foreground"><Link href="/login" className="font-semibold text-foreground underline underline-offset-2">Back to sign in</Link></p>
+      <p className="mt-6 text-center text-sm text-[#687684]"><Link href="/login" className={linkClass}>Back to sign in</Link></p>
     </div>
   )
 }

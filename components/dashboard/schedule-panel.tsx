@@ -83,15 +83,15 @@ export function SchedulePanel({ contained = false }: SchedulePanelProps) {
   return (
     <aside
       className={cn(
-        "scrollbar-hidden sticky flex flex-col gap-3 overflow-y-auto rounded-[1.75rem] p-3 text-sidebar-foreground",
+        "scrollbar-hidden flex flex-col gap-3 overflow-y-auto rounded-[1.75rem] p-3 text-sidebar-foreground",
         contained
-          ? "top-0 h-full max-h-full"
-          : "top-3 max-h-[calc(100dvh-1.5rem)] md:top-5 md:max-h-[calc(100dvh-2.5rem)]",
+          ? "md:sticky md:top-0 md:h-full md:max-h-full"
+          : "sticky top-3 max-h-[calc(100dvh-1.5rem)] md:top-5 md:max-h-[calc(100dvh-2.5rem)]",
       )}
       style={{ background: "linear-gradient(135deg, rgba(35,141,212,0.60) 0%, rgba(51,210,1,0.60) 100%)" }}
     >
       {/* Top toolbar for actions */}
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <button
           type="button"
           onClick={() => startAssessment(false)}
