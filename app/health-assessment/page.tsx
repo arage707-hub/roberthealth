@@ -9,17 +9,24 @@ export const metadata = {
 
 export default function HealthAssessmentPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-background px-4 py-10">
-      <div className="w-full max-w-2xl">
+    <main className="relative min-h-screen overflow-hidden bg-[#f3f7fb] px-4 py-6 text-[#292a34] sm:px-6 sm:py-10">
+      {/* Ambient corner glows in the brand colors, same as the sign-in pages */}
+      <div aria-hidden className="pointer-events-none fixed -left-32 -top-32 size-[420px] rounded-full bg-[#238dd4]/15 blur-3xl" />
+      <div aria-hidden className="pointer-events-none fixed -bottom-40 -right-24 size-[460px] rounded-full bg-[#33d201]/15 blur-3xl" />
+
+      <div className="relative mx-auto flex w-full max-w-2xl items-center justify-between gap-4">
+        <img src="/health.png" alt="HealthiPhy.ai" className="h-12 w-36 object-contain object-left" />
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#687684] shadow-sm shadow-[#238dd4]/5 transition hover:text-[#238dd4]"
         >
           <ArrowLeft className="size-4" />
           Back to dashboard
         </Link>
       </div>
-      <HealthQuiz />
+      <div className="relative mx-auto mt-6 flex w-full max-w-2xl justify-center">
+        <HealthQuiz />
+      </div>
     </main>
   )
 }

@@ -28,7 +28,7 @@ export function AuthShell({ children }: { children: ReactNode }) {
 
           <div className="relative z-10">
             <span className="inline-flex rounded-2xl bg-white px-3 py-2.5 shadow-lg shadow-black/10">
-              <img src="/health.png" alt="HealthiPhy.ai" className="h-9 w-auto object-contain" />
+              <img src="/health.png" alt="HealthiPhy.ai" className="h-12 w-auto object-contain" />
             </span>
           </div>
 
@@ -63,7 +63,7 @@ export function AuthShell({ children }: { children: ReactNode }) {
         {/* Form panel */}
         <section className="flex flex-col p-6 sm:p-10 lg:p-12">
           <div className="mb-8 flex items-center justify-between lg:hidden">
-            <img src="/health.png" alt="HealthiPhy.ai" className="h-9 w-auto object-contain" />
+            <img src="/health.png" alt="HealthiPhy.ai" className="h-12 w-auto object-contain" />
             <span aria-hidden className="h-1.5 w-16 rounded-full bg-gradient-to-r from-[#238dd4] to-[#33d201]" />
           </div>
           <div className="my-auto">{children}</div>

@@ -10,11 +10,12 @@ import {
 } from "lucide-react"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import { useCurrentUserRole } from "@/lib/use-current-user-role"
-import { useDashboardData, type HealthTask } from "@/lib/use-dashboard-data"
+import { useDashboardData, type HealthTask, type RecommendedProduct } from "@/lib/use-dashboard-data"
 import type { AssessmentPercentages } from "@/lib/use-latest-assessment"
 import type { AchievementSummary } from "@/lib/achievement-types"
 import { categoryFor, healthCategories as categories } from "@/lib/health-categories"
 import { LeftNav, MobileNavDrawer, MobileTopBar } from "@/components/dashboard/site-nav"
+import { ProductBar, RecommendedProducts } from "@/components/dashboard/recommended-products"
 import { cn } from "@/lib/utils"
 
 const lime = "#c9ea86"
@@ -94,13 +95,13 @@ function StatusTracker({ tasks, assessment, achievements, generating, onAskGuide
   )
 }
 
-function ChoiceRow({ task, maxPoints, completing, onComplete }: { task: HealthTask; maxPoints: number; completing: boolean; onComplete: (task: HealthTask) => Promise<void> }) {
+function ChoiceRow({ task, maxPoints, completing, onComplete, products = [] }: { task: HealthTask; maxPoints: number; completing: boolean; onComplete: (task: HealthTask) => Promise<void>; products?: RecommendedProduct[] }) {
   const category = categoryFor(task.category)
   const Icon = category.icon
   const done = task.completed_current_period
   const filled = Math.max(1, Math.round((task.points_value / maxPoints) * 10))
   return (
-    <article className={cn("grid gap-4 rounded-[20px] p-4 transition sm:grid-cols-[128px_1fr] sm:p-5", done ? "bg-[#dff8d7]/70" : "bg-white")}>
+    <article className={cn("grid min-w-0 gap-4 overflow-hidden rounded-[20px] p-4 transition sm:grid-cols-[128px_minmax(0,1fr)] sm:p-5", done ? "bg-[#dff8d7]/70" : "bg-white")}>
       <div className={cn("grid h-32 place-items-center rounded-2xl sm:h-full sm:min-h-[128px]", done && "opacity-60")} style={{ background: category.bg }}>
         <Icon className="size-10" style={{ color: category.accent }} />
       </div>
@@ -129,6 +130,12 @@ function ChoiceRow({ task, maxPoints, completing, onComplete }: { task: HealthTa
           </button>
         </div>
       </div>
+      {products.length ? (
+        <div className="min-w-0 max-w-full space-y-2 overflow-hidden sm:col-span-2">
+          <p className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#238dd4]"><Sparkles className="size-3.5" />Products that can help with this choice</p>
+          {products.map((item) => <ProductBar key={item.id} item={item} />)}
+        </div>
+      ) : null}
     </article>
   )
 }
@@ -191,7 +198,9 @@ export function HealthChoicesPage() {
     setMenuOpen(false)
     if (label === "Health Choices") return window.scrollTo({ top: 0, behavior: "smooth" })
     if (label === "Health Assessment") return startAssessment(false)
+    if (label === "Biometrics") return router.push("/biometrics")
     if (label === "Knowledge Base") return router.push("/admin/knowledge")
+    if (label === "Products") return router.push("/admin/products")
     if (label === "Users") return router.push("/admin/users")
     // Dashboard, AI Chat, Pathway Progress and Notifications live on the home page.
     sessionStorage.setItem("dashboardNavigate", label)
@@ -217,6 +226,18 @@ export function HealthChoicesPage() {
     .sort((a, b) => Number(a.completed_current_period) - Number(b.completed_current_period))
   const maxPoints = Math.max(1, ...data.tasks.map((task) => task.points_value))
 
+  // Products the AI tied to a specific choice, keyed by that choice's pathway + title.
+  const productsByTask = useMemo(() => {
+    const map = new Map<string, RecommendedProduct[]>()
+    for (const item of data.products) {
+      if (!item.supports_task) continue
+      const key = `${item.category.toLowerCase()}|${item.supports_task.trim().toLowerCase()}`
+      map.set(key, [...(map.get(key) ?? []), item])
+    }
+    return map
+  }, [data.products])
+  const productsFor = (task: HealthTask) => productsByTask.get(`${task.category.toLowerCase()}|${task.title.trim().toLowerCase()}`) ?? []
+
   return (
     <div className="min-h-screen bg-white text-[#292a34]">
       <MobileNavDrawer {...navProps} open={menuOpen} onClose={() => setMenuOpen(false)} />
@@ -241,17 +262,16 @@ export function HealthChoicesPage() {
 
           <section className="mt-8">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-              <h2 className="font-bold">AI Activities</h2>
+              <h2 className="font-bold">Recommended Health Choices</h2>
               <p className="text-xs text-[#9a9ba1]">{visibleTasks.length} of {data.tasks.length} shown</p>
             </div>
-            <div className="scrollbar-hidden -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-              <div role="group" aria-label="Filter choices by pathway" className="inline-flex min-w-max gap-1 rounded-full bg-white p-1 shadow-sm shadow-[#238dd4]/5">
-                {["All", ...categories.map((item) => item.key)].map((item) => (
-                  <button key={item} type="button" onClick={() => setCategory(item)} aria-pressed={category === item} className={cn("rounded-full px-4 py-2 text-sm font-medium transition", category === item ? "text-[#292a34]" : "text-[#687684] hover:bg-[#f3f7fb]")} style={category === item ? { background: lime } : undefined}>
-                    {item}{counts[item] ? <span className="ml-1.5 text-xs text-[#687684]">{counts[item]}</span> : null}
-                  </button>
-                ))}
-              </div>
+            {/* Pathway filter: wraps onto extra lines on phones instead of scrolling sideways */}
+            <div role="group" aria-label="Filter choices by pathway" className="flex flex-wrap gap-1 rounded-2xl bg-white p-1 shadow-sm shadow-[#238dd4]/5 sm:inline-flex sm:rounded-full">
+              {["All", ...categories.map((item) => item.key)].map((item) => (
+                <button key={item} type="button" onClick={() => setCategory(item)} aria-pressed={category === item} className={cn("rounded-full px-3 py-1.5 text-sm font-medium transition sm:px-4 sm:py-2", category === item ? "text-[#292a34]" : "text-[#687684] hover:bg-[#f3f7fb]")} style={category === item ? { background: lime } : undefined}>
+                  {item}{counts[item] ? <span className="ml-1.5 text-xs text-[#687684]">{counts[item]}</span> : null}
+                </button>
+              ))}
             </div>
 
             <div className="mt-5 space-y-4">
@@ -265,9 +285,11 @@ export function HealthChoicesPage() {
                 </div>
               ) : null}
               {!data.tasksLoading && data.tasks.length && !visibleTasks.length ? <p className="rounded-[20px] bg-white p-8 text-center text-sm text-[#687684]">No {category === "All" ? "" : category + " "}choices match your search.</p> : null}
-              {visibleTasks.map((task) => <ChoiceRow key={task.id} task={task} maxPoints={maxPoints} completing={data.completingId === task.id} onComplete={data.completeTask} />)}
+              {visibleTasks.map((task) => <ChoiceRow key={task.id} task={task} maxPoints={maxPoints} completing={data.completingId === task.id} onComplete={data.completeTask} products={productsFor(task)} />)}
             </div>
           </section>
+
+          <div className="mt-8"><RecommendedProducts products={category === "All" ? data.products : data.products.filter((item) => item.category.toLowerCase() === category.toLowerCase())} loading={data.tasksLoading} generating={data.generating} hasTasks={data.tasks.length > 0} initialLimit={9} matching={data.matchingProducts} onMatch={() => void data.matchProducts()} /></div>
 
           <footer className="mt-10 flex flex-col items-center gap-3 text-center text-xs text-[#8e8f95] xl:flex-row xl:gap-8 xl:text-left"><b className="text-[#238dd4]">Copyright © 2026 HealthiPhy.ai</b><span className="flex flex-wrap justify-center gap-x-6 gap-y-1 xl:gap-8"><Link href="#">Privacy Policy</Link><Link href="#">Terms and conditions</Link><Link href="#">Contact</Link></span></footer>
         </main>

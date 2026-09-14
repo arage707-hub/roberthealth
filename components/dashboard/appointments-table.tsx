@@ -5,9 +5,9 @@ import { Check, LoaderCircle, Sparkles } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import { cn } from "@/lib/utils"
+import { apiBaseUrl } from "@/lib/config"
 
 const categories = ["All", "Nutrition", "Toxin", "Mental", "Physical", "Genetic", "Medical"]
-const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
 
 type HealthTask = {
   id: string

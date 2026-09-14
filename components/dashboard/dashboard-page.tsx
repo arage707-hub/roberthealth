@@ -13,8 +13,7 @@ import { SchedulePanel } from "@/components/dashboard/schedule-panel"
 import { AiChat } from "@/components/dashboard/ai-chat"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import type { AchievementSummary } from "@/lib/achievement-types"
-
-const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
+import { apiBaseUrl } from "@/lib/config"
 
 export function DashboardPage() {
   const router = useRouter()

@@ -14,6 +14,7 @@ import { AuthGate } from "@/components/auth/auth-gate"
 import { AiChat } from "@/components/dashboard/ai-chat"
 import { LeftNav, MobileNavDrawer, MobileTopBar } from "@/components/dashboard/site-nav"
 import { AchievementBadge } from "@/components/dashboard/achievement-badge"
+import { RecommendedProducts } from "@/components/dashboard/recommended-products"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import type { AssessmentPercentages } from "@/lib/use-latest-assessment"
 import { useCurrentUserRole } from "@/lib/use-current-user-role"
@@ -200,8 +201,10 @@ function DynamicDashboardPreview() {
       return
     }
     if (label === "Health Assessment") return startAssessment(false)
+    if (label === "Biometrics") return router.push("/biometrics")
     if (label === "Health Choices") return router.push("/health-choices")
     if (label === "Knowledge Base") return router.push("/admin/knowledge")
+    if (label === "Products") return router.push("/admin/products")
     if (label === "Users") return router.push("/admin/users")
 
     setActiveView("Dashboard")
@@ -236,7 +239,7 @@ function DynamicDashboardPreview() {
         {activeView !== "AI Chat" ? <MobileTopBar title="Dashboard" unread={navProps.unread} onOpenMenu={() => setMenuOpen(true)} className="sticky top-0 z-40 -mx-4 mb-5 sm:-mx-6 sm:px-6 xl:hidden" /> : null}
         <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-5 xl:pt-0"><div className="min-w-0"><h1 className="text-2xl font-bold xl:text-[28px]">Hello, {firstName}! 👋</h1><p className="mt-1 text-sm text-[#9a9ba1]">Let&apos;s continue your journey to better health today</p></div><div className="flex items-center gap-3"><label className="flex w-[280px] items-center gap-3 rounded-2xl bg-white px-5 py-3.5 text-[#98999f] shadow-sm shadow-[#238dd4]/5"><Search className="size-5 text-[#238dd4]" /><input className="w-full bg-transparent text-sm outline-none" placeholder="Search your dashboard" /></label><button type="button" onClick={() => startAssessment(false)} className="w-full whitespace-nowrap rounded-2xl bg-gradient-to-r from-[#238dd4] to-[#33d201] px-5 py-3.5 text-sm font-semibold text-white shadow-sm sm:w-auto">{data.assessment ? "Retake assessment" : "Take assessment"}</button></div></header>
         {data.error ? <p className="mt-5 rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-700">{data.error}</p> : null}
-        {activeView === "AI Chat" ? <div className="mt-7 h-[calc(100vh-130px)] min-h-[700px]"><AiChat onOpenMenu={() => setMenuOpen(true)} unreadCount={navProps.unread} /></div> : <><div className="mt-6"><LowerContent tasks={data.tasks} tasksLoading={data.tasksLoading} completingId={data.completingId} generating={data.generating} onComplete={data.completeTask} onGenerate={data.generateTasks} /></div><SummaryCards data={data} /><section className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[318px_1fr]"><WeightChart score={score} /><CalorieChart assessment={data.assessment} /></section><div className="mt-6"><WorkoutProgress assessment={data.assessment} /></div><footer className="mt-10 flex flex-col items-center gap-3 text-center text-xs text-[#8e8f95] xl:flex-row xl:gap-8 xl:text-left"><b className="text-[#238dd4]">Copyright © 2026 HealthiPhy.ai</b><span className="flex flex-wrap justify-center gap-x-6 gap-y-1 xl:gap-8"><span>Privacy Policy</span><span>Terms and conditions</span><span>Contact</span></span></footer></>}
+        {activeView === "AI Chat" ? <div className="mt-7 h-[calc(100vh-130px)] min-h-[700px]"><AiChat onOpenMenu={() => setMenuOpen(true)} unreadCount={navProps.unread} /></div> : <><div className="mt-6"><LowerContent tasks={data.tasks} tasksLoading={data.tasksLoading} completingId={data.completingId} generating={data.generating} onComplete={data.completeTask} onGenerate={data.generateTasks} /></div><div className="mt-6"><RecommendedProducts products={data.products} loading={data.tasksLoading} generating={data.generating} hasTasks={data.tasks.length > 0} matching={data.matchingProducts} onMatch={() => void data.matchProducts()} /></div><SummaryCards data={data} /><section className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[318px_1fr]"><WeightChart score={score} /><CalorieChart assessment={data.assessment} /></section><div className="mt-6"><WorkoutProgress assessment={data.assessment} /></div><footer className="mt-10 flex flex-col items-center gap-3 text-center text-xs text-[#8e8f95] xl:flex-row xl:gap-8 xl:text-left"><b className="text-[#238dd4]">Copyright © 2026 HealthiPhy.ai</b><span className="flex flex-wrap justify-center gap-x-6 gap-y-1 xl:gap-8"><span>Privacy Policy</span><span>Terms and conditions</span><span>Contact</span></span></footer></>}
       </main>
       <RightPanel name={fullName} achievements={data.achievements} tasks={data.tasks} />
     </div>

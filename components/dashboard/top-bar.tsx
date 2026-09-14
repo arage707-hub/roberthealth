@@ -8,8 +8,7 @@ import { cn } from "@/lib/utils"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import type { AchievementSummary } from "@/lib/achievement-types"
 import { AchievementBadge } from "@/components/dashboard/achievement-badge"
-
-const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
+import { apiBaseUrl } from "@/lib/config"
 
 export function TopBar({ achievements, onAchievementsChange }: { achievements: AchievementSummary | null; onAchievementsChange: (summary: AchievementSummary) => void }) {
   const { resolvedTheme, setTheme } = useTheme()

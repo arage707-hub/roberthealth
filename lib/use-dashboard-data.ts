@@ -4,8 +4,7 @@ import { useEffect, useState } from "react"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import { useLatestAssessment, type AssessmentPercentages } from "@/lib/use-latest-assessment"
 import type { AchievementSummary } from "@/lib/achievement-types"
-
-const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
+import { apiBaseUrl } from "@/lib/config"
 
 export type HealthTask = {
   id: string
@@ -18,10 +17,30 @@ export type HealthTask = {
   completed_current_period: boolean
 }
 
+export type RecommendedProduct = {
+  id: string
+  category: string
+  reason: string
+  supports_task: string | null
+  rank: number
+  product: {
+    id: string
+    name: string
+    brand: string | null
+    description: string
+    price: number | string | null
+    currency: string
+    purchase_url: string
+    image_url: string | null
+    category: string[] | null
+  }
+}
+
 export type DashboardData = {
   achievements: AchievementSummary | null
   assessment: AssessmentPercentages | null
   tasks: HealthTask[]
+  products: RecommendedProduct[]
   loading: boolean
   tasksLoading: boolean
   error: string
@@ -30,6 +49,8 @@ export type DashboardData = {
   generating: boolean
   completeTask: (task: HealthTask) => Promise<void>
   generateTasks: () => Promise<void>
+  matchingProducts: boolean
+  matchProducts: () => Promise<void>
 }
 
 /**
@@ -41,12 +62,14 @@ export function useDashboardData(): DashboardData {
   const { assessment } = useLatestAssessment()
   const [achievements, setAchievements] = useState<AchievementSummary | null>(null)
   const [tasks, setTasks] = useState<HealthTask[]>([])
+  const [products, setProducts] = useState<RecommendedProduct[]>([])
   const [accountName, setAccountName] = useState("")
   const [loading, setLoading] = useState(true)
   const [tasksLoading, setTasksLoading] = useState(true)
   const [error, setError] = useState("")
   const [completingId, setCompletingId] = useState("")
   const [generating, setGenerating] = useState(false)
+  const [matchingProducts, setMatchingProducts] = useState(false)
 
   async function request(path: string, init?: RequestInit) {
     const { data, error: sessionError } = await getSupabaseClient().auth.getSession()
@@ -94,6 +117,7 @@ export function useDashboardData(): DashboardData {
         const loadedTasks = Array.isArray(taskBody.data) ? taskBody.data : []
         const generationStatus = taskBody.generation?.status ?? "idle"
         setTasks(loadedTasks)
+        setProducts(Array.isArray(taskBody.products) ? taskBody.products : [])
         setGenerating(generationStatus === "processing")
 
         if (generationStatus === "processing") {
@@ -161,6 +185,7 @@ export function useDashboardData(): DashboardData {
           const loadedTasks = Array.isArray(taskBody.data) ? taskBody.data : []
           const generationStatus = taskBody.generation?.status ?? "idle"
           setTasks(loadedTasks)
+          setProducts(Array.isArray(taskBody.products) ? taskBody.products : [])
           if (generationStatus === "processing" && attempts < 120) {
             window.setTimeout(() => { void refresh() }, 2500)
           } else {
@@ -179,5 +204,36 @@ export function useDashboardData(): DashboardData {
     }
   }
 
-  return { achievements, assessment, tasks, loading, tasksLoading, error, accountName, completingId, generating, completeTask, generateTasks }
+  /** Product-only refresh: matches the catalog to the existing choices without regenerating them. */
+  async function matchProducts() {
+    setMatchingProducts(true)
+    setError("")
+    try {
+      await request("/api/tasks/recommend-products", { method: "POST" })
+      // Picks land per pathway over the next ~30s; poll a few times then stop.
+      let attempts = 0
+      const before = products.length
+      const refresh = async () => {
+        attempts += 1
+        try {
+          const taskBody = await request("/api/tasks")
+          const loaded = Array.isArray(taskBody.products) ? taskBody.products : []
+          setProducts(loaded)
+          if (attempts < 12 && (loaded.length === 0 || loaded.length === before)) {
+            window.setTimeout(() => { void refresh() }, 4000)
+          } else {
+            setMatchingProducts(false)
+          }
+        } catch {
+          setMatchingProducts(false)
+        }
+      }
+      window.setTimeout(() => { void refresh() }, 4000)
+    } catch (matchError) {
+      setMatchingProducts(false)
+      setError(matchError instanceof Error ? matchError.message : "Unable to match products right now.")
+    }
+  }
+
+  return { achievements, assessment, tasks, products, loading, tasksLoading, error, accountName, completingId, generating, completeTask, generateTasks, matchingProducts, matchProducts }
 }

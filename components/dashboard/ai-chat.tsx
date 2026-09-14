@@ -7,17 +7,13 @@ import remarkGfm from "remark-gfm"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import { cn } from "@/lib/utils"
 import { MobileTopBar } from "@/components/dashboard/site-nav"
+import { apiBaseUrl } from "@/lib/config"
+import { speechSupport, startRecognizer, type RecognizerHandle } from "@/lib/speech"
 
 type Attachment = { name: string; type: "image" | "document"; url?: string }
 type Message = { id: number | string; role: "assistant" | "user"; text: string; createdAt: string; conversationKey: string; attachments?: Attachment[] }
 type Conversation = { id: string; title: string; preview: string; updatedAt: string; messages: Message[] }
-type RecognitionResult = { 0: { transcript: string } }
-type RecognitionEvent = Event & { results: ArrayLike<RecognitionResult> }
-type RecognitionError = Event & { error: string }
-type Recognition = { lang: string; continuous: boolean; interimResults: boolean; start: () => void; stop: () => void; abort: () => void; onstart: (() => void) | null; onresult: ((event: RecognitionEvent) => void) | null; onerror: ((event: RecognitionError) => void) | null; onend: (() => void) | null }
-type RecognitionConstructor = new () => Recognition
 
-const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
 const allowedTypes = new Set(["application/pdf", "text/plain", "text/markdown", "text/csv", "image/jpeg", "image/png", "image/webp"])
 const dayKey = (date: string) => "history-" + new Date(date).toISOString().slice(0, 10)
 
@@ -58,7 +54,7 @@ export function AiChat({ onOpenMenu, unreadCount = 0 }: { onOpenMenu?: () => voi
   const galleryInputRef = useRef<HTMLInputElement>(null)
   const attachMenuRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
-  const recognitionRef = useRef<Recognition | null>(null)
+  const recognitionRef = useRef<RecognizerHandle | null>(null)
   const speechBaseInputRef = useRef("")
 
   useEffect(() => {
@@ -194,26 +190,26 @@ export function AiChat({ onOpenMenu, unreadCount = 0 }: { onOpenMenu?: () => voi
 
   function toggleDictation() {
     if (listening) return recognitionRef.current?.stop()
-    const speechWindow = window as typeof window & { SpeechRecognition?: RecognitionConstructor; webkitSpeechRecognition?: RecognitionConstructor }
-    const RecognitionApi = speechWindow.SpeechRecognition || speechWindow.webkitSpeechRecognition
-    if (!RecognitionApi) return setError("Speech-to-text requires Chrome or Edge on HTTPS.")
+    const support = speechSupport()
+    if (!support.recognition || support.recognitionNote) return setError(support.recognitionNote ?? "Speech-to-text isn't available in this browser. Use Chrome, Edge, or Safari.")
     speechBaseInputRef.current = input.trim()
-    const recognition = new RecognitionApi()
-    recognition.lang = navigator.language || "en-US"
-    recognition.continuous = true
-    recognition.interimResults = true
-    recognition.onstart = () => setListening(true)
-    recognition.onresult = (event) => {
-      const spoken = Array.from(event.results).map((result) => result[0]?.transcript ?? "").join(" ").trim()
-      setInput([speechBaseInputRef.current, spoken].filter(Boolean).join(" "))
-    }
-    recognition.onerror = (event) => {
-      if (event.error === "not-allowed") setError("Microphone access was denied. Allow it in your browser and try again.")
-      else if (event.error !== "aborted" && event.error !== "no-speech") setError("Speech-to-text stopped unexpectedly.")
-    }
-    recognition.onend = () => { setListening(false); recognitionRef.current = null }
-    recognitionRef.current = recognition
-    recognition.start()
+    const apply = (spoken: string) => setInput([speechBaseInputRef.current, spoken].filter(Boolean).join(" "))
+    const handle = startRecognizer({
+      continuous: true,
+      onStart: () => setListening(true),
+      onInterim: apply,
+      onResult: (spoken) => { if (spoken) apply(spoken); setListening(false); recognitionRef.current = null },
+      onError: (code) => {
+        if (code === "not-allowed") setError("Microphone access was denied. Allow it for this site in your browser and try again.")
+        else if (code === "audio-capture") setError("No microphone was found. Check that one is connected and allowed.")
+        else if (code === "network") setError("Speech-to-text needs an internet connection in this browser.")
+        else if (code !== "no-speech") setError("Speech-to-text stopped unexpectedly.")
+        setListening(false)
+        recognitionRef.current = null
+      },
+    })
+    if (!handle) return setError("Speech-to-text could not start. Please try again.")
+    recognitionRef.current = handle
   }
 
   async function sendMessage(text: string, files = attachments) {
@@ -278,7 +274,7 @@ export function AiChat({ onOpenMenu, unreadCount = 0 }: { onOpenMenu?: () => voi
         <div ref={messagesRef} className="scrollbar-hidden flex-1 overflow-y-auto px-5 py-6"><div className="mx-auto flex max-w-3xl flex-col gap-5">
           {historyLoading ? <div className="flex items-center justify-center gap-2 py-20 text-sm text-[#82909a]"><LoaderCircle className="size-4 animate-spin" /> Loading your chats...</div> : null}
           {!historyLoading && !visibleMessages.length ? <div className="mx-auto my-16 max-w-md text-center"><span className="mx-auto grid size-16 place-items-center rounded-3xl bg-gradient-to-br from-[#238dd4] to-[#33d201] text-white shadow-lg"><Sparkles className="size-7" /></span><h2 className="mt-5 text-xl font-bold text-[#26333d]">How can I support your health today?</h2><p className="mt-2 text-sm leading-6 text-[#82909a]">Ask about your assessment, nutrition, daily habits, fitness, or upload a health document.</p><div className="mt-5 flex flex-wrap justify-center gap-2">{["Summarize my assessment", "Improve my nutrition", "Create an exercise plan"].map((suggestion) => <button key={suggestion} type="button" onClick={() => void sendMessage(suggestion, [])} className="rounded-full border border-[#d9e5ec] bg-white px-3 py-2 text-xs font-semibold text-[#52636f] hover:border-[#238dd4]">{suggestion}</button>)}</div></div> : null}
-          {visibleMessages.map((message) => <div key={message.id} className={cn("flex gap-3", message.role === "user" && "flex-row-reverse")}><span className={cn("grid size-9 shrink-0 place-items-center rounded-full", message.role === "assistant" ? "bg-gradient-to-br from-[#238dd4] to-[#33d201] text-white" : "bg-[#dce7ee] text-[#52636f]")}>{message.role === "assistant" ? <Sparkles className="size-4" /> : <User className="size-4" />}</span><div className={cn("max-w-[78%]", message.role === "user" && "text-right")}><div className={cn("rounded-2xl px-4 py-3 text-left text-sm leading-6 shadow-sm", message.role === "assistant" ? "rounded-tl-md bg-white text-[#33434e]" : "rounded-tr-md bg-gradient-to-r from-[#238dd4] to-[#36b96f] text-white")}>{message.role === "assistant" ? <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: ({ children }) => <p className="my-2 first:mt-0 last:mb-0">{children}</p>, ul: ({ children }) => <ul className="my-2 list-disc pl-5">{children}</ul>, ol: ({ children }) => <ol className="my-2 list-decimal pl-5">{children}</ol>, strong: ({ children }) => <strong className="font-bold">{children}</strong> }}>{message.text}</ReactMarkdown> : <span className="whitespace-pre-wrap">{message.text}</span>}{message.attachments?.length ? <div className="mt-2 flex flex-wrap gap-1.5">{message.attachments.map((file) => <span key={file.name} className="rounded-full bg-white/20 px-2 py-1 text-[10px]">{file.name}</span>)}</div> : null}</div><time className="mt-1 block text-[10px] text-[#9aa6af]">{new Date(message.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</time></div></div>)}
+          {visibleMessages.map((message) => <div key={message.id} className={cn("flex gap-3", message.role === "user" && "flex-row-reverse")}><span className={cn("grid size-9 shrink-0 place-items-center rounded-full", message.role === "assistant" ? "bg-gradient-to-br from-[#238dd4] to-[#33d201] text-white" : "bg-[#dce7ee] text-[#52636f]")}>{message.role === "assistant" ? <Sparkles className="size-4" /> : <User className="size-4" />}</span><div className={cn("max-w-[78%]", message.role === "user" && "text-right")}><div className={cn("rounded-2xl px-4 py-3 text-left text-sm leading-6 shadow-sm", message.role === "assistant" ? "rounded-tl-md bg-white text-[#33434e]" : "rounded-tr-md bg-gradient-to-r from-[#238dd4] to-[#36b96f] text-white")}>{message.role === "assistant" ? <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: ({ children }) => <p className="my-2 first:mt-0 last:mb-0">{children}</p>, ul: ({ children }) => <ul className="my-2 list-disc pl-5">{children}</ul>, ol: ({ children }) => <ol className="my-2 list-decimal pl-5">{children}</ol>, strong: ({ children }) => <strong className="font-bold">{children}</strong>, a: ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer sponsored" className="font-semibold text-[#238dd4] underline decoration-[#238dd4]/40 underline-offset-2 hover:decoration-[#238dd4]">{children}</a> }}>{message.text}</ReactMarkdown> : <span className="whitespace-pre-wrap">{message.text}</span>}{message.attachments?.length ? <div className="mt-2 flex flex-wrap gap-1.5">{message.attachments.map((file) => <span key={file.name} className="rounded-full bg-white/20 px-2 py-1 text-[10px]">{file.name}</span>)}</div> : null}</div><time className="mt-1 block text-[10px] text-[#9aa6af]">{new Date(message.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</time></div></div>)}
           {sending ? <div className="flex items-center gap-2 text-sm text-[#82909a]"><LoaderCircle className="size-4 animate-spin" /> Health AI is thinking...</div> : null}
           {error ? <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p> : null}
         </div></div>

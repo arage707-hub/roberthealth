@@ -297,7 +297,19 @@ main:has(section[data-ai-chat-screen="true"]) > div:has(> section[data-ai-chat-s
 .voice-radiating { animation: voice-radiate 2.1s ease-out infinite; }
 .voice-glowing { animation: voice-glow 1.4s ease-in-out infinite; }
 
+/* Sound bars shown while the assessment reads a question aloud */
+@keyframes sound-bar {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+.sound-bars { display: inline-flex; align-items: flex-end; gap: 3px; height: 18px; }
+.sound-bars > span { display: block; width: 4px; height: 100%; border-radius: 999px; transform-origin: bottom; animation: sound-bar 0.9s ease-in-out infinite; }
+.sound-bars > span:nth-child(2) { animation-delay: 0.15s; }
+.sound-bars > span:nth-child(3) { animation-delay: 0.3s; }
+.sound-bars > span:nth-child(4) { animation-delay: 0.45s; }
+
 @media (prefers-reduced-motion: reduce) {
   .badge-shine > span { animation: none; }
   .voice-talking, .voice-radiating, .voice-glowing, .voice-splash, .voice-splash-ring { animation: none; opacity: 0; }
+  .sound-bars > span { animation: none; transform: scaleY(0.7); }
 }

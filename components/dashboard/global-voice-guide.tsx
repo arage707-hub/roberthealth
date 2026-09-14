@@ -4,26 +4,11 @@ import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
 import { AudioLines, LoaderCircle, Mic, Sparkles, X } from "lucide-react"
 import { getSupabaseClient } from "@/lib/supabase-client"
+import { apiBaseUrl } from "@/lib/config"
+import { primeSpeech, speakText, speechSupport, startRecognizer, stopSpeaking, type RecognizerHandle } from "@/lib/speech"
 
 type VoiceStage = "idle" | "listening" | "thinking" | "speaking" | "error"
-type RecognitionResult = { 0: { transcript: string } }
-type RecognitionEvent = Event & { results: ArrayLike<RecognitionResult> }
-type RecognitionError = Event & { error: string }
-type Recognition = {
-  lang: string
-  continuous: boolean
-  interimResults: boolean
-  start: () => void
-  stop: () => void
-  abort: () => void
-  onstart: (() => void) | null
-  onresult: ((event: RecognitionEvent) => void) | null
-  onerror: ((event: RecognitionError) => void) | null
-  onend: (() => void) | null
-}
-type RecognitionConstructor = new () => Recognition
 
-const apiBaseUrl = (process.env.NEXT_PUBLIC_LARAVEL_API_URL ?? "https://aiprocess.trippinweb.com").replace(/\/$/, "")
 const authRoutes = ["/login", "/signup", "/forgot-password", "/reset-password", "/verify"]
 
 export function GlobalVoiceGuide() {
@@ -36,9 +21,27 @@ export function GlobalVoiceGuide() {
   const [splashes, setSplashes] = useState<number[]>([])
   const [atPageEnd, setAtPageEnd] = useState(false)
   const [onChatScreen, setOnChatScreen] = useState(false)
-  const recognitionRef = useRef<Recognition | null>(null)
+  // Only signed-in users get the guide. Starts hidden so it never flashes while the
+  // session is being checked or while an unauthenticated page redirects to /login.
+  const [signedIn, setSignedIn] = useState(false)
+  const recognitionRef = useRef<RecognizerHandle | null>(null)
   const sessionOpenRef = useRef(false)
   const sendingRef = useRef(false)
+
+  useEffect(() => {
+    let active = true
+    const supabase = getSupabaseClient()
+    supabase.auth.getSession().then(({ data }) => {
+      if (active) setSignedIn(Boolean(data.session))
+    })
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (active) setSignedIn(Boolean(session))
+    })
+    return () => {
+      active = false
+      listener?.subscription.unsubscribe()
+    }
+  }, [])
 
   useEffect(() => {
     function updateChatContext() {
@@ -92,7 +95,7 @@ export function GlobalVoiceGuide() {
   useEffect(() => () => {
     sessionOpenRef.current = false
     recognitionRef.current?.abort()
-    window.speechSynthesis?.cancel()
+    stopSpeaking()
   }, [])
 
   useEffect(() => {
@@ -101,9 +104,10 @@ export function GlobalVoiceGuide() {
     return () => window.removeEventListener("open-global-voice-guide", handleOpenRequest)
   }, [])
 
-  if (authRoutes.some((route) => pathname.startsWith(route))) return null
+  if (!signedIn || authRoutes.some((route) => pathname.startsWith(route))) return null
 
   function openPopup() {
+    primeSpeech()
     sessionOpenRef.current = true
     setOpen(true)
     setStage("idle")
@@ -116,14 +120,14 @@ export function GlobalVoiceGuide() {
     sessionOpenRef.current = false
     recognitionRef.current?.abort()
     recognitionRef.current = null
-    window.speechSynthesis?.cancel()
+    stopSpeaking()
     sendingRef.current = false
     setOpen(false)
     setStage("idle")
   }
 
   function speak(text: string) {
-    if (!sessionOpenRef.current || !("speechSynthesis" in window)) {
+    if (!sessionOpenRef.current || !speechSupport().synthesis) {
       setStage("idle")
       return
     }
@@ -132,24 +136,20 @@ export function GlobalVoiceGuide() {
       .replace(/\((https?:\/\/[^)]+)\)/g, "")
       .replace(/\s+/g, " ")
       .trim()
-    const utterance = new SpeechSynthesisUtterance(cleanText)
-    utterance.lang = navigator.language || "en-US"
-    utterance.rate = 0.96
-    const language = utterance.lang.split("-")[0]
-    const preferredVoice = window.speechSynthesis.getVoices().find((voice) => voice.lang.startsWith(language))
-    if (preferredVoice) utterance.voice = preferredVoice
-    utterance.onstart = () => setStage("speaking")
-    utterance.onend = () => {
-      if (sessionOpenRef.current) setStage("idle")
-    }
-    utterance.onerror = () => {
-      if (sessionOpenRef.current) {
-        setError("The spoken response could not be played. Tap the sphere to continue.")
+    speakText(cleanText, {
+      onStart: () => setStage("speaking"),
+      onEnd: (completed, reason) => {
+        if (!sessionOpenRef.current) return
+        if (completed || reason === "cancelled") {
+          setStage("idle")
+          return
+        }
+        setError(reason === "blocked"
+          ? "This browser only plays speech after a tap. Tap the sphere to hear the reply."
+          : "The spoken response could not be played. Tap the sphere to continue.")
         setStage("error")
-      }
-    }
-    window.speechSynthesis.cancel()
-    window.speechSynthesis.speak(utterance)
+      },
+    })
   }
 
   async function askGuide(message: string) {
@@ -188,57 +188,50 @@ export function GlobalVoiceGuide() {
 
   function startListening() {
     if (sendingRef.current) return
-    const speechWindow = window as typeof window & {
-      SpeechRecognition?: RecognitionConstructor
-      webkitSpeechRecognition?: RecognitionConstructor
-    }
-    const RecognitionApi = speechWindow.SpeechRecognition || speechWindow.webkitSpeechRecognition
-    if (!RecognitionApi) {
-      setError("Voice conversation requires Chrome or Edge on HTTPS.")
+    const support = speechSupport()
+    if (!support.recognition || support.recognitionNote) {
+      setError(support.recognitionNote ?? "Voice conversation isn't available in this browser. Use Chrome, Edge, or Safari.")
       setStage("error")
       return
     }
 
     recognitionRef.current?.abort()
-    window.speechSynthesis?.cancel()
+    stopSpeaking()
     setTranscript("")
     setReply("")
     setError("")
-    let latestTranscript = ""
     let failed = false
-    const recognition = new RecognitionApi()
-    recognition.lang = navigator.language || "en-US"
-    recognition.continuous = false
-    recognition.interimResults = true
-    recognition.onstart = () => setStage("listening")
-    recognition.onresult = (event) => {
-      latestTranscript = Array.from(event.results).map((result) => result[0]?.transcript ?? "").join(" ").trim()
-      setTranscript(latestTranscript)
-    }
-    recognition.onerror = (event) => {
-      failed = true
-      if (event.error === "not-allowed" || event.error === "service-not-allowed") {
-        setError("Microphone access was denied. Allow it in your browser and try again.")
-      } else if (event.error === "no-speech") {
-        setError("I did not hear anything. Tap the sphere and try again.")
-      } else if (event.error !== "aborted") {
-        setError("Voice input stopped unexpectedly. Please try again.")
-      }
-      if (event.error !== "aborted") setStage("error")
-    }
-    recognition.onend = () => {
-      recognitionRef.current = null
-      if (!failed && latestTranscript && sessionOpenRef.current) void askGuide(latestTranscript)
-      else if (!failed && sessionOpenRef.current) setStage("idle")
-    }
-    recognitionRef.current = recognition
-    try {
-      recognition.start()
-    } catch {
-      recognitionRef.current = null
+    const handle = startRecognizer({
+      onStart: () => setStage("listening"),
+      onInterim: (text) => setTranscript(text),
+      onError: (code) => {
+        failed = true
+        if (code === "not-allowed") {
+          setError("Microphone access was denied. Allow it for this site in your browser and try again.")
+        } else if (code === "no-speech") {
+          setError("I did not hear anything. Tap the sphere and try again.")
+        } else if (code === "audio-capture") {
+          setError("No microphone was found. Check that one is connected and allowed.")
+        } else if (code === "network") {
+          setError("Voice recognition needs an internet connection in this browser. Please try again.")
+        } else {
+          setError("Voice input stopped unexpectedly. Please try again.")
+        }
+        setStage("error")
+      },
+      onResult: (text) => {
+        recognitionRef.current = null
+        if (failed || !sessionOpenRef.current) return
+        if (text) void askGuide(text)
+        else setStage("idle")
+      },
+    })
+    if (!handle) {
       setError("Voice conversation could not start. Please try again.")
       setStage("error")
+      return
     }
+    recognitionRef.current = handle
   }
 
   function splash() {
@@ -255,7 +248,7 @@ export function GlobalVoiceGuide() {
       return
     }
     if (stage === "speaking") {
-      window.speechSynthesis?.cancel()
+      stopSpeaking()
       setStage("idle")
       return
     }

@@ -7,8 +7,7 @@ import { Mail, UserRound } from "lucide-react"
 import { getSupabaseClient } from "@/lib/supabase-client"
 import { SocialButtons } from "./social-buttons"
 import { Checkbox, ErrorNote, Eyebrow, Field, Heading, PasswordField, PrimaryButton, linkClass } from "./auth-ui"
-
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://roberthealth.vercel.app").replace(/\/$/, "")
+import { siteUrl } from "@/lib/config"
 
 export function SignupForm() {
   const router = useRouter()
